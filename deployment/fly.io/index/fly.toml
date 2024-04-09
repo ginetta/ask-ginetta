@@ -1,0 +1,18 @@
+app = "ask-ginetta-index"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+
+[[services]]
+internal_port = 8080
+protocol = "tcp"
+
+[[services.ports]]
+port = 80
+
+[[services.ports]]
+port = 443
+
+[mounts]
+source = "vespa_data"
+destination = "/opt/vespa/var/"

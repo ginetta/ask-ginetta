@@ -1,0 +1,25 @@
+app = "ask-ginetta-model-server"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+
+[build]
+dockerfile = "Dockerfile"
+
+[env]
+DOCUMENT_ENCODER_MODEL = ""
+NORMALIZE_EMBEDDINGS = ""
+MIN_THREADS_ML_MODELS = ""
+LOG_LEVEL = "info"
+
+[[services]]
+internal_port = 9000
+protocol = "tcp"
+
+[[services.ports]]
+handlers = ["http"]
+port = 80
+
+[[services.ports]]
+handlers = ["tls", "http"]
+port = 443

@@ -1,0 +1,20 @@
+app = "ask-ginetta-relational-db"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+
+[[services]]
+internal_port = 5432
+protocol = "tcp"
+
+[[services.ports]]
+port = 5432
+
+[env]
+POSTGRES_USER = ""
+POSTGRES_PASSWORD = ""
+POSTGRES_DB = ""
+
+[mounts]
+source = "pg_data"
+destination = "/var/lib/postgresql/data"
