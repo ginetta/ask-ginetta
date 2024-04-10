@@ -1,6 +1,6 @@
 # fly.toml file generated for danswer-api on Fly.io
 
-app = "ask-ginetta-api-server-background"
+app = "ask-ginetta-backend"
 
 kill_signal = "SIGINT"
 kill_timeout = 5

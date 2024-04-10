@@ -12,8 +12,15 @@ fly apps create ask-ginetta-web-server
 
 # Set the environment variable pointing to the backend API
 # (should be http://<backend-app-name>.internal:8080)
-fly secrets set INTERNAL_URL=http://ask-ginetta-api-server-background.internal:8080
+fly secrets set INTERNAL_URL=http://ask-ginetta-backend.internal:8080
+```
 
-# Deploy your frontend app using fly deploy and the Dockerfile
-fly deploy --config fly.toml --dockerfile Dockerfile
+Now navigate to the root directory of the application. This is necessary to run the Dockerfile build with the appropriate context:
+
+```
+# Navigate to root directory
+cd ../../../
+
+# Deploy your web server app using fly deploy and the Dockerfile
+fly deploy --config deployment/fly.io/web_server/fly.toml --dockerfile Dockerfile -a ask-ginetta-web-server
 ```

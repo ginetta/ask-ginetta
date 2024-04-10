@@ -7,6 +7,9 @@ The Dockerfile and fly.toml provided in this repository can create a Fly.io appl
 From this directory, run the following commands:
 
 ```
+# Create app
+fly apps create ask-ginetta-relational-db
+
 # Set the secrets for the DB user, password and name.
 # Make sure you store them in 1Password to make it
 # available to the rest of the team.

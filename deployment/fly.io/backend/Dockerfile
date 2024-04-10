@@ -16,11 +16,20 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/* && \
   apt-get clean
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
+# Install the CPU versions of torch and torchvision directly
+# to save on space. This is a workaround for the large size of the
+# build image when using the regular torch and torchvision packages
+# and their GPU dependencies.
+RUN python -m pip install torch==2.0.1+cpu torchvision==0.15.2+cpu --index-url https://download.pytorch.org/whl/cpu
 
-# Install Python dependencies from a requirements file
+# Copy the requirements file
 COPY ./backend/requirements/default.txt /tmp/requirements.txt
+
+# Remove original (GPU) torch and torchvision from the requirements file
+RUN sed -i '/torch==2.0.1/d' /tmp/requirements.txt && \
+  sed -i '/torchvision==0.15.2/d' /tmp/requirements.txt
+
+# Install the remaining Python dependencies from the modified requirements file
 RUN pip install --no-cache-dir --upgrade -r /tmp/requirements.txt && \
   pip uninstall -y py && \
   playwright install chromium && playwright install-deps chromium && \

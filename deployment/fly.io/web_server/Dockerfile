@@ -12,7 +12,8 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+# Adjusted COPY commands to reflect the correct path from the root directory
+COPY web/package.json web/yarn.lock* web/package-lock.json* web/pnpm-lock.yaml* ./
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
   elif [ -f package-lock.json ]; then npm ci; \
@@ -24,7 +25,8 @@ RUN \
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY ./web .  # Adjust this line to match the actual path in your project structure
+# Ensure the COPY command correctly points to the relative path of the `web` directory
+COPY web/ .
 
 # Disable automatic telemetry collection for Next.js
 ENV NEXT_TELEMETRY_DISABLED 1
@@ -56,10 +58,12 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Display the content of ls -la ./
+RUN ls -la ./
+
 # Redefine environment variables for runtime
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NEXT_PUBLIC_DISABLE_STREAMING=${NEXT_PUBLIC_DISABLE_STREAMING}
 ENV NEXT_PUBLIC_NEW_CHAT_DIRECTS_TO_SAME_PERSONA=${NEXT_PUBLIC_NEW_CHAT_DIRECTS_TO_SAME_PERSONA}
 
-# Define the command to run your application
-CMD ["node", "server.js"]
+# Define the command to

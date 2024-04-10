@@ -10,11 +10,6 @@ protocol = "tcp"
 [[services.ports]]
 port = 5432
 
-[env]
-POSTGRES_USER = ""
-POSTGRES_PASSWORD = ""
-POSTGRES_DB = ""
-
 [mounts]
 source = "pg_data"
 destination = "/var/lib/postgresql/data"

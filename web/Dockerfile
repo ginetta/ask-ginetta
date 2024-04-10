@@ -49,8 +49,8 @@ WORKDIR /app
 # global modules may be outdated and trigger security scans.
 RUN rm -rf /usr/local/lib/node_modules
 
-# Not needed, set by compose 
-# ENV NODE_ENV production  
+# Not needed, set by compose
+# ENV NODE_ENV production
 
 # Disable automatic telemetry collection
 ENV NEXT_TELEMETRY_DISABLED 1
@@ -68,6 +68,9 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Display the content of ls -la ./
+RUN ls -la ./
+
 # Environment variables must be redefined at run time
 # NOTE: if you add something here, make sure to add it to the builder as well
 ARG NEXT_PUBLIC_DISABLE_STREAMING
@@ -76,8 +79,8 @@ ENV NEXT_PUBLIC_DISABLE_STREAMING=${NEXT_PUBLIC_DISABLE_STREAMING}
 ARG NEXT_PUBLIC_NEW_CHAT_DIRECTS_TO_SAME_PERSONA
 ENV NEXT_PUBLIC_NEW_CHAT_DIRECTS_TO_SAME_PERSONA=${NEXT_PUBLIC_NEW_CHAT_DIRECTS_TO_SAME_PERSONA}
 
-# Note: Don't expose ports here, Compose will handle that for us if necessary. 
-# If you want to run this without compose, specify the ports to 
+# Note: Don't expose ports here, Compose will handle that for us if necessary.
+# If you want to run this without compose, specify the ports to
 # expose via cli
 
 CMD ["node", "server.js"]

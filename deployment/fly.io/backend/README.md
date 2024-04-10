@@ -10,7 +10,7 @@ From this directory, run the following commands:
 
 ```
 # Create app
-fly apps create ask-ginetta-api-server-background
+fly apps create ask-ginetta-backend
 
 # Make a list of the environment variables you need to set,
 # store their values in 1Password for the team to have access to.
@@ -27,5 +27,5 @@ Now navigate to the root directory of the application. This is necessary to run 
 cd ../../../
 
 # Deploy your backend app using fly deploy and the Dockerfile
-fly deploy --config deployment/fly.io/api_server_background/fly.toml --dockerfile Dockerfile -a ask-ginetta-api-server-background
+fly deploy --config deployment/fly.io/backend/fly.toml --dockerfile Dockerfile -a ask-ginetta-backend
 ```
