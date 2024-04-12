@@ -1,18 +1,34 @@
-app = "ask-ginetta-index"
+app = "ask-ginetta-vespa-index"
 
 kill_signal = "SIGINT"
 kill_timeout = 5
 
+[build]
+image = "vespaengine/vespa:8.277.17"
+
 [[services]]
-internal_port = 8080
+internal_port = 19071
 protocol = "tcp"
 
 [[services.ports]]
-port = 80
+handlers = ["http"]
+port = 19071
+
+[[services]]
+internal_port = 8081
+protocol = "tcp"
 
 [[services.ports]]
-port = 443
+handlers = ["http"]
+port = 8081
 
 [mounts]
 source = "vespa_data"
-destination = "/opt/vespa/var/"
+destination = "/opt/vespa/var"
+
+[experimental]
+private_network = true
+
+[deploy]
+vm_size = "performance-1x"
+memory = 4096              # Memory in MB
