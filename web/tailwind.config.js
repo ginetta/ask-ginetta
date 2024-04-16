@@ -21,7 +21,7 @@ module.exports = {
         "3xl": "1700px",
       },
       fontFamily: {
-        sans: ["var(--font-inter)"],
+        sans: ["var(--font-montserrat)"],
       },
       width: {
         "message-xs": "450px",
