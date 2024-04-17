@@ -111,7 +111,7 @@ export function ChatIntro({
           <div className="w-message-xs 2xl:w-message-sm 3xl:w-message">
             <div className="flex">
               <div className="mx-auto">
-                <div className="m-auto h-[80px] w-[80px] text-inverted">
+                <div className="m-auto h-[80px] w-[80px] text-inverted-dark dark:text-inverted">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 400 400"
@@ -197,7 +197,7 @@ export function ChatIntro({
         ) : (
           <div className="px-12 w-searchbar-xs 2xl:w-searchbar-sm 3xl:w-searchbar">
             <div className="mx-auto">
-              <div className="m-auto h-[80px] w-[80px] text-inverted">
+              <div className="m-auto h-[80px] w-[80px] text-inverted-dark dark:text-inverted">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 400 400"

@@ -43,7 +43,7 @@ export default async function Page() {
       </div>
       <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div>
-          <div className="h-16 w-16 mx-auto text-inverted">
+          <div className="h-16 w-16 mx-auto text-inverted-dark dark:text-inverted">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 400 400"

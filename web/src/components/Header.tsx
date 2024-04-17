@@ -63,7 +63,7 @@ export function Header({ user, settings }: HeaderProps) {
           }
         >
           <div className="flex">
-            <div className="w-10 h-10 -mt-0.5 text-inverted">
+            <div className="w-10 h-10 -mt-0.5 text-inverted-dark dark:text-inverted">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 400 400"
