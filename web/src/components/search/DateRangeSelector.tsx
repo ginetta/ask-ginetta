@@ -18,11 +18,15 @@ function DateSelectorItem({
       px-3 
       text-sm 
       bg-background
+      dark:bg-background-dark
       hover:bg-hover 
+      dark:hover:bg-hover-dark
       py-2.5 
       select-none 
       cursor-pointer 
-      ${skipBottomBorder ? "" : "border-b border-border"} 
+      ${
+        skipBottomBorder ? "" : "border-b border-border dark:border-border-dark"
+      } 
       `}
       onClick={onClick}
     >
@@ -50,7 +54,9 @@ export function DateRangeSelector({
             className={`
               border 
               border-border 
+              dark:border-border-dark
               bg-background
+              dark:bg-background-dark
               rounded-lg 
               flex 
               flex-col 
@@ -110,12 +116,17 @@ export function DateRangeSelector({
               rounded-lg 
               border 
               border-border 
+              dark:border-border-dark
               cursor-pointer 
-              hover:bg-hover`}
+              hover:bg-hover
+              dark:hover:bg-hover-dark
+              `}
         >
           <FiCalendar className="my-auto mr-2" />{" "}
           {value?.selectValue ? (
-            <div className="text-emphasis">{value.selectValue}</div>
+            <div className="text-emphasis dark:text-emphasis">
+              {value.selectValue}
+            </div>
           ) : (
             "Any time..."
           )}

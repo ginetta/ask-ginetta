@@ -61,13 +61,13 @@ export function ShareChatSessionModal({
     <ModalWrapper onClose={onClose} modalClassName="max-w-3xl">
       <>
         <div className="flex mb-4">
-          <h2 className="text-2xl text-emphasis font-bold flex my-auto">
+          <h2 className="text-2xl text-emphasis dark:text-emphasis-dark font-bold flex my-auto">
             Share link to Chat
           </h2>
 
           <div
             onClick={onClose}
-            className="my-auto ml-auto p-2 hover:bg-hover rounded cursor-pointer"
+            className="my-auto ml-auto p-2 hover:bg-hover dark:hover:bg-hover-dark rounded cursor-pointer"
           >
             <FiX size={20} />
           </div>

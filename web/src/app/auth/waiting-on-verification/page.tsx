@@ -43,8 +43,17 @@ export default async function Page() {
       </div>
       <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div>
-          <div className="h-16 w-16 mx-auto">
-            <Image src="/logo.png" alt="Logo" width="1419" height="1520" />
+          <div className="h-16 w-16 mx-auto text-inverted">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 400 400"
+              width="100%"
+            >
+              <path
+                d="M200 216.2c-35.9 0-65-29.1-65-65s29.1-65 65-65 65 29.1 65 65-29.1 65-65 65m0 97.6c-35.9 0-65-29.1-65-65h130c0 35.8-29.1 65-65 65"
+                fill="currentColor"
+              />
+            </svg>
           </div>
 
           <div className="flex">

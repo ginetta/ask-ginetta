@@ -17,7 +17,7 @@ export function ModelOption({
   return (
     <div
       className={
-        "p-2 border border-border rounded shadow-md bg-hover-light w-96 flex flex-col"
+        "p-2 border border-border dark:border-border-dark rounded shadow-md bg-hover-light dark:bg-hover-light-dark w-96 flex flex-col"
       }
     >
       <div className="font-bold text-lg flex">
@@ -49,10 +49,13 @@ export function ModelOption({
             p-2 
             rounded-lg
             bg-background
+            dark:bg-background-dark
             border
             border-border
+            dark:border-border-dark
             cursor-pointer
             hover:bg-hover
+            dark:hover:bg-hover-dark
             text-sm
             mt-auto`}
           onClick={() => onSelect(model)}

@@ -24,7 +24,7 @@ export const ModalWrapper = ({
           }
         }}
         className={
-          "bg-background text-emphasis p-8 rounded shadow-xl w-3/4 max-w-3xl shadow " +
+          "bg-background dark:bg-background-dark text-emphasis dark:text-emphasis-dark p-8 rounded shadow-xl w-3/4 max-w-3xl shadow " +
           (modalClassName || "")
         }
       >

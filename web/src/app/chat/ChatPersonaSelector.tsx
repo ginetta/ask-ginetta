@@ -27,8 +27,11 @@ function PersonaItem({
     select-none 
     cursor-pointer 
     text-emphasis
+    dark:text-emphasis-dark
     bg-background
+    dark:bg-background-dark
     hover:bg-hover
+    dark:hover:bg-hover-dark
   `}
       onClick={() => {
         onSelect(id);
@@ -63,8 +66,10 @@ export function ChatPersonaSelector({
         <div
           className={`
             border 
-            border-border 
+            border-border
+            dark:border-border-dark
             bg-background
+            dark:bg-background-dark
             rounded-lg 
             flex 
             flex-col 
@@ -96,7 +101,7 @@ export function ChatPersonaSelector({
         </div>
       }
     >
-      <div className="select-none text-xl font-bold flex px-2 py-1.5 text-strong rounded cursor-pointer hover:bg-hover-light">
+      <div className="select-none text-xl font-bold flex px-2 py-1.5 text-strong dark:text-strong-dark rounded cursor-pointer hover:bg-hover-light dark:hover:bg-hover-light-dark">
         <div className="my-auto">
           {currentlySelectedPersona?.name || "Default"}
         </div>

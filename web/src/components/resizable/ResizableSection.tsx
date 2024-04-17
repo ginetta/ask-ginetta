@@ -92,12 +92,13 @@ export function ResizableSection({
           cursor-col-resize 
           border-l 
           border-border 
+          dark:border-border-dark
           h-full
           w-full
-          transition-all duration-300 ease-in hover:border-border-strong hover:border-l-2
+          transition-all duration-300 ease-in hover:border-border-strong dark:hover:border-border-strong-dark hover:border-l-2
           ${
             isResizing
-              ? "transition-all duration-300 ease-in border-border-strong border-l-2"
+              ? "transition-all duration-300 ease-in border-border-strong dark:border-border-strong-dark border-l-2"
               : ""
           }
           `}

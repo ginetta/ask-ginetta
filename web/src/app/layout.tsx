@@ -22,7 +22,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} font-sans text-default bg-background`}
+        className={`${montserrat.variable} font-sans text-default bg-background dark:bg-background-dark dark:text-default-dark`}
       >
         {children}
       </body>

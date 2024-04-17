@@ -208,10 +208,10 @@ export const Chat = ({
           (persona) => persona.id === existingChatSessionPersonaId
         )
       : defaultSelectedPersonaId !== undefined
-        ? availablePersonas.find(
-            (persona) => persona.id === defaultSelectedPersonaId
-          )
-        : undefined
+      ? availablePersonas.find(
+          (persona) => persona.id === defaultSelectedPersonaId
+        )
+      : undefined
   );
   const livePersona = selectedPersona || availablePersonas[0];
 
@@ -595,7 +595,7 @@ export const Chat = ({
               ref={scrollableDivRef}
             >
               {livePersona && (
-                <div className="sticky top-0 left-80 z-10 w-full bg-background/90 flex">
+                <div className="sticky top-0 left-80 z-10 w-full bg-background dark:bg-background-dark flex">
                   <div className="ml-2 p-1 rounded mt-2 w-fit">
                     <ChatPersonaSelector
                       personas={availablePersonas}
@@ -615,7 +615,7 @@ export const Chat = ({
                   {chatSessionId !== null && (
                     <div
                       onClick={() => setSharingModalVisible(true)}
-                      className="ml-auto mr-6 my-auto border-border border p-2 rounded cursor-pointer hover:bg-hover-light"
+                      className="ml-auto mr-6 my-auto border-border dark:border-border-dark border p-2 rounded cursor-pointer hover:bg-hover-light dark:hover:bg-hover-light-dark text-inverted-dark dark:text-inverted"
                     >
                       <FiShare2 />
                     </div>
@@ -826,7 +826,7 @@ export const Chat = ({
               </div>
             </div>
 
-            <div className="absolute bottom-0 z-10 w-full bg-background border-t border-border">
+            <div className="absolute bottom-0 z-10 w-full bg-background dark:bg-background-dark border-t border-border dark:border-border-dark">
               <div className="w-full pb-4 pt-2">
                 {!retrievalDisabled && (
                   <div className="flex">
@@ -858,6 +858,7 @@ export const Chat = ({
                         shrink
                         border 
                         border-border 
+                        dark:border-border-dark
                         rounded-lg 
                         outline-none 
                         placeholder-gray-400 
@@ -913,15 +914,17 @@ export const Chat = ({
                           <FiStopCircle
                             size={18}
                             className={
-                              "text-emphasis w-9 h-9 p-2 rounded-lg hover:bg-hover"
+                              "text-emphasis dark:text-emphasis-dark w-9 h-9 p-2 rounded-lg hover:bg-hover dark:hover:bg-hover-dark"
                             }
                           />
                         ) : (
                           <FiSend
                             size={18}
                             className={
-                              "text-emphasis w-9 h-9 p-2 rounded-lg " +
-                              (message ? "bg-blue-200" : "")
+                              "text-emphasis dark:text-emphasis-dark w-9 h-9 p-2 rounded-lg " +
+                              (message
+                                ? "bg-inverted dark:bg-inverted-dark"
+                                : "")
                             }
                           />
                         )}

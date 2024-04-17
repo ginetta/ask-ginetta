@@ -20,9 +20,13 @@ function HelperItemDisplay({
   description: string;
 }) {
   return (
-    <div className="cursor-pointer hover:bg-hover-light border border-border rounded py-2 px-4">
-      <div className="text-emphasis font-bold text-lg flex">{title}</div>
-      <div className="text-sm">{description}</div>
+    <div className="cursor-pointer hover:bg-hover-light dark:hover:bg-hover-light-dark border border-border dark:border-border-dark rounded py-2 px-4">
+      <div className="text-emphasis dark:text-emphasis-dark font-bold text-lg flex">
+        {title}
+      </div>
+      <div className="text-sm text-inverted-dark dark:text-inverted">
+        {description}
+      </div>
     </div>
   );
 }
@@ -39,10 +43,10 @@ function AllPersonaOptionDisplay({
   return (
     <Modal onOutsideClick={handleClose}>
       <div>
-        <div className="flex w-full border-b border-border mb-4 pb-4">
-          <h2 className="text-xl text-strong font-bold flex">
+        <div className="flex w-full border-b border-border dark:border-border-dark mb-4 pb-4">
+          <h2 className="text-xl text-strong dark:text-strong-dark font-bold flex">
             <div className="p-1 bg-ai rounded-lg h-fit my-auto mr-2">
-              <div className="text-inverted">
+              <div className="text-inverted dark:text-inverted-dark">
                 <FiCpu size={16} className="my-auto mx-auto" />
               </div>
             </div>
@@ -51,7 +55,7 @@ function AllPersonaOptionDisplay({
 
           <div
             onClick={handleClose}
-            className="ml-auto p-1 rounded hover:bg-hover"
+            className="ml-auto p-1 rounded hover:bg-hover dark:bg-hover-dark"
           >
             <FiX size={18} />
           </div>
@@ -107,15 +111,19 @@ export function ChatIntro({
           <div className="w-message-xs 2xl:w-message-sm 3xl:w-message">
             <div className="flex">
               <div className="mx-auto">
-                <div className="m-auto h-[80px] w-[80px]">
-                  <Image
-                    src="/logo.png"
-                    alt="Logo"
-                    width="1419"
-                    height="1520"
-                  />
+                <div className="m-auto h-[80px] w-[80px] text-inverted">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 400 400"
+                    width="100%"
+                  >
+                    <path
+                      d="M200 216.2c-35.9 0-65-29.1-65-65s29.1-65 65-65 65 29.1 65 65-29.1 65-65 65m0 97.6c-35.9 0-65-29.1-65-65h130c0 35.8-29.1 65-65 65"
+                      fill="currentColor"
+                    />
+                  </svg>
                 </div>
-                <div className="m-auto text-3xl font-bold text-strong mt-4 w-fit">
+                <div className="m-auto text-3xl font-bold text-strong dark:text-strong-dark mt-4 w-fit">
                   {selectedPersona?.name || "How can I help you today?"}
                 </div>
                 {selectedPersona && (
@@ -130,7 +138,7 @@ export function ChatIntro({
                 <div>
                   {selectedPersona.document_sets.length > 0 && (
                     <div className="mt-2">
-                      <p className="font-bold mb-1 mt-4 text-emphasis">
+                      <p className="font-bold mb-1 mt-4 text-emphasis dark:text-emphasis-dark">
                         Knowledge Sets:{" "}
                       </p>
                       <div className="flex flex-wrap gap-2">
@@ -138,7 +146,7 @@ export function ChatIntro({
                           <div key={documentSet.id} className="w-fit">
                             <HoverPopup
                               mainContent={
-                                <span className="flex w-fit p-1 rounded border border-border text-xs font-medium cursor-default">
+                                <span className="flex w-fit p-1 rounded border border-border dark:border-border-dark text-xs font-medium cursor-default">
                                   <div className="mr-1 my-auto">
                                     <FiBookmark />
                                   </div>
@@ -162,14 +170,14 @@ export function ChatIntro({
                   )}
                   {availableSources.length > 0 && (
                     <div className="mt-2">
-                      <p className="font-bold mb-1 mt-4 text-emphasis">
+                      <p className="font-bold mb-1 mt-4 text-emphasis dark:text-emphasis-dark">
                         Connected Sources:{" "}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {availableSourceMetadata.map((sourceMetadata) => (
                           <span
                             key={sourceMetadata.internalName}
-                            className="flex w-fit p-1 rounded border border-border text-xs font-medium cursor-default"
+                            className="flex w-fit p-1 rounded border border-border dark:border-border-dark text-xs font-medium cursor-default"
                           >
                             <div className="mr-1 my-auto">
                               {sourceMetadata.icon({})}
@@ -189,16 +197,25 @@ export function ChatIntro({
         ) : (
           <div className="px-12 w-searchbar-xs 2xl:w-searchbar-sm 3xl:w-searchbar">
             <div className="mx-auto">
-              <div className="m-auto h-[80px] w-[80px]">
-                <Image src="/logo.png" alt="Logo" width="1419" height="1520" />
+              <div className="m-auto h-[80px] w-[80px] text-inverted">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 400 400"
+                  width="100%"
+                >
+                  <path
+                    d="M200 216.2c-35.9 0-65-29.1-65-65s29.1-65 65-65 65 29.1 65 65-29.1 65-65 65m0 97.6c-35.9 0-65-29.1-65-65h130c0 35.8-29.1 65-65 65"
+                    fill="currentColor"
+                  />
+                </svg>
               </div>
             </div>
 
             <div className="mt-2">
-              <p className="font-bold text-xl mb-1 mt-4 text-emphasis text-center">
+              <p className="font-bold text-xl mb-1 mt-4 text-emphasis dark:text-emphasis-dark text-center">
                 Which assistant do you want to chat with today?{" "}
               </p>
-              <p className="text-sm text-center">
+              <p className="text-sm text-center text-inverted-dark dark:text-inverted">
                 Or ask a question immediately to use the{" "}
                 <b>{availablePersonas[0]?.name}</b> assistant.
               </p>
@@ -221,7 +238,7 @@ export function ChatIntro({
                 <div className="mt-4 flex">
                   <div
                     onClick={() => setIsAllPersonaOptionVisible(true)}
-                    className="text-sm flex mx-auto p-1 hover:bg-hover-light rounded cursor-default"
+                    className="text-sm flex mx-auto p-1 hover:bg-hover-light dark:hover-bg-hover-light-dark rounded cursor-default"
                   >
                     <FiZoomIn className="my-auto mr-1" /> See more
                   </div>

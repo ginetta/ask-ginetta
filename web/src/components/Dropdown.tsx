@@ -247,8 +247,10 @@ export function DefaultDropdownElement({
         select-none 
         cursor-pointer 
         bg-background
+        dark:bg-background-dark
         rounded
         hover:bg-hover-light
+        dark:hover:bg-hover-light-dark
       `}
       onClick={onSelect}
     >
@@ -300,6 +302,7 @@ export function DefaultDropdown({
             flex 
             flex-col 
             bg-background
+            dark:bg-background-dark
             max-h-96 
             overflow-y-auto 
             overscroll-contain`}
@@ -334,11 +337,13 @@ export function DefaultDropdown({
             flex 
             text-sm 
             bg-background 
+            dark:bg-background-dark
             px-3
             py-1.5 
             rounded-lg 
             border 
             border-border 
+            dark:border-border-dark
             cursor-pointer`}
       >
         <p className="line-clamp-1">
@@ -390,11 +395,14 @@ export function ControlledPopup({
             absolute 
             top-0 
             bg-background 
+            dark:bg-background-dark
             border 
             border-border 
+            dark:border-border-dark
             z-30 
             rounded 
             text-emphasis 
+            dark:text-emphasis-dark
             shadow-lg`}
           style={{ transform: "translateY(calc(-100% - 5px))" }}
         >

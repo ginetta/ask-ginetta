@@ -68,13 +68,17 @@ export function TextFormField({
           `
         border 
         border-border 
+        dark:border-border-dark
         rounded 
         w-full 
         py-2 
         px-3 
         mt-1
         ${isTextArea ? " h-28" : ""}
-      ` + (disabled ? " bg-background-strong" : " bg-background-emphasis")
+      ` +
+          (disabled
+            ? " bg-background-strong dark:bg-background-strong-dark"
+            : " bg-background-emphasis dark:bg-background-emphasis-dark")
         }
         disabled={disabled}
         placeholder={placeholder}
@@ -167,7 +171,9 @@ export function TextArrayField<T extends Yup.AnyObject>({
                       className={`
                       border 
                       border-border 
+                      dark:border-border-dark
                       bg-background 
+                      dark:bg-background-dark
                       rounded 
                       w-full 
                       py-2 
@@ -179,7 +185,7 @@ export function TextArrayField<T extends Yup.AnyObject>({
                     />
                     <div className="my-auto">
                       <FiX
-                        className="my-auto w-10 h-10 cursor-pointer hover:bg-hover rounded p-2"
+                        className="my-auto w-10 h-10 cursor-pointer hover:bg-hover dark:hover:bg-hover-dark rounded p-2"
                         onClick={() => arrayHelpers.remove(index)}
                       />
                     </div>

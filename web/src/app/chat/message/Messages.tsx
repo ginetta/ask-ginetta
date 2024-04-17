@@ -67,12 +67,12 @@ export const AIMessage = ({
         <div className="ml-8">
           <div className="flex">
             <div className="p-1 bg-ai rounded-lg h-fit my-auto">
-              <div className="text-inverted">
+              <div className="text-inverted dark:text-inverted-dark">
                 <FiCpu size={16} className="my-auto mx-auto" />
               </div>
             </div>
 
-            <div className="font-bold text-emphasis ml-2 my-auto">
+            <div className="font-bold text-emphasis dark:text-emphasis-dark ml-2 my-auto">
               {personaName || "Danswer"}
             </div>
 
@@ -123,7 +123,7 @@ export const AIMessage = ({
               <>
                 {typeof content === "string" ? (
                   <ReactMarkdown
-                    className="prose max-w-full"
+                    className="prose max-w-full text-inverted-dark dark:text-inverted"
                     components={{
                       a: ({ node, ...props }) => (
                         <a
@@ -158,7 +158,9 @@ export const AIMessage = ({
             )}
             {citedDocuments && citedDocuments.length > 0 && (
               <div className="mt-2">
-                <b className="text-sm text-emphasis">Sources:</b>
+                <b className="text-sm text-emphasis dark:text-emphasis-dark">
+                  Sources:
+                </b>
                 <div className="flex flex-wrap gap-2">
                   {citedDocuments
                     .filter(([_, document]) => document.semantic_identifier)
@@ -180,7 +182,7 @@ export const AIMessage = ({
                             key={document.document_id}
                             href={document.link}
                             target="_blank"
-                            className="cursor-pointer hover:bg-hover"
+                            className="cursor-pointer hover:bg-hover dark:hover:bg-hover-dark text-inverted-dark dark:text-inverted"
                           >
                             {display}
                           </a>
@@ -201,7 +203,7 @@ export const AIMessage = ({
             )}
           </div>
           {handleFeedback && (
-            <div className="flex flex-col md:flex-row gap-x-0.5 ml-8 mt-1">
+            <div className="flex flex-col md:flex-row gap-x-0.5 ml-8 mt-1 text-inverted-dark dark:text-inverted">
               <CopyButton content={content.toString()} />
               <Hoverable onClick={() => handleFeedback("like")}>
                 <FiThumbsUp />
@@ -233,13 +235,15 @@ export const HumanMessage = ({
               </div>
             </div>
 
-            <div className="font-bold text-emphasis ml-2 my-auto">You</div>
+            <div className="font-bold text-emphasis dark:text-emphasis-dark ml-2 my-auto">
+              You
+            </div>
           </div>
           <div className="mx-auto mt-1 ml-8 w-searchbar-xs 2xl:w-searchbar-sm 3xl:w-searchbar-default flex flex-wrap">
             <div className="w-message-xs 2xl:w-message-sm 3xl:w-message-default break-words">
               {typeof content === "string" ? (
                 <ReactMarkdown
-                  className="prose max-w-full"
+                  className="prose max-w-full text-inverted-dark dark:text-inverted"
                   components={{
                     a: ({ node, ...props }) => (
                       <a

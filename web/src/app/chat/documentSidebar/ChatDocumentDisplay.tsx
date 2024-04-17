@@ -37,7 +37,7 @@ export function ChatDocumentDisplay({
 
   return (
     <div key={document.semantic_identifier} className="text-sm px-3">
-      <div className="flex relative w-full overflow-y-visible">
+      <div className="flex relative w-full overflow-y-visible text-strong dark:text-strong-dark">
         <a
           className={
             "rounded-lg flex font-bold flex-shrink truncate " +
@@ -77,7 +77,9 @@ export function ChatDocumentDisplay({
               className={`
                 text-xs
                 text-emphasis
+                dark:text-emphasis-dark
                 bg-hover
+                dark:bg-hover-dark
                 rounded
                 p-0.5
                 w-fit
@@ -102,7 +104,7 @@ export function ChatDocumentDisplay({
           <DocumentMetadataBlock document={document} />
         </div>
       </div>
-      <p className="pl-1 pt-2 pb-1 break-words">
+      <p className="pl-1 pt-2 pb-1 break-words text-inverted-dark dark:text-inverted">
         {buildDocumentSummaryDisplay(document.match_highlights, document.blurb)}
       </p>
       <div className="mb-2">

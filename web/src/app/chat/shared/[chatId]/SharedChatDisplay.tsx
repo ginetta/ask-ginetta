@@ -11,7 +11,7 @@ function BackToDanswerButton() {
   const router = useRouter();
 
   return (
-    <div className="absolute bottom-4 w-full flex border-t border-border pt-4">
+    <div className="absolute bottom-4 w-full flex border-t border-border dark:border-border-dark pt-4">
       <div className="mx-auto">
         <Button onClick={() => router.push("/chat")}>
           Back to Danswer Chat
@@ -48,11 +48,11 @@ export function SharedChatDisplay({
         <div className="flex w-full overflow-hidden overflow-y-scroll">
           <div className="mx-auto">
             <div className="px-5 pt-8">
-              <h1 className="text-3xl text-strong font-bold">
+              <h1 className="text-3xl text-strong dark:text-strong-dark font-bold">
                 {chatSession.description ||
                   `Chat ${chatSession.chat_session_id}`}
               </h1>
-              <p className="text-emphasis">
+              <p className="text-emphasis dark:text-emphasis-dark">
                 {humanReadableFormat(chatSession.time_created)}
               </p>
 
