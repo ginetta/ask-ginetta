@@ -32,7 +32,9 @@ import { GroupsIcon } from "@/components/icons/icons";
 
 function Label({ children }: { children: string | JSX.Element }) {
   return (
-    <div className="block font-medium text-base text-emphasis">{children}</div>
+    <div className="block font-medium text-base text-emphasis dark:text-emphasis-dark">
+      {children}
+    </div>
   );
 }
 
@@ -361,12 +363,13 @@ export function PersonaEditor({
                                       rounded-lg 
                                       border
                                       border-border
+                                      dark:border-border-dark
                                       w-fit 
                                       flex 
                                       cursor-pointer ` +
                                       (isSelected
-                                        ? " bg-hover"
-                                        : " bg-background hover:bg-hover-light")
+                                        ? " bg-hover dark:bg-hover-dark"
+                                        : " bg-background hover:bg-hover-light dark:bg-background-dark dark:hover:bg-hover-light-dark")
                                     }
                                     onClick={() => {
                                       if (isSelected) {
@@ -561,7 +564,7 @@ export function PersonaEditor({
                                 className={index === 0 ? "mt-2" : "mt-6"}
                               >
                                 <div className="flex">
-                                  <div className="w-full mr-6 border border-border p-3 rounded">
+                                  <div className="w-full mr-6 border border-border dark:border-border-dark p-3 rounded">
                                     <div>
                                       <Label>Name</Label>
                                       <SubLabel>
@@ -574,7 +577,9 @@ export function PersonaEditor({
                                         className={`
                                         border 
                                         border-border 
+                                        dark:border-border-dark
                                         bg-background 
+                                        dark:bg-background-dark
                                         rounded 
                                         w-full 
                                         py-2 
@@ -602,8 +607,10 @@ export function PersonaEditor({
                                         name={`starter_messages.${index}.description`}
                                         className={`
                                         border 
-                                        border-border 
+                                        border-border
+                                        dark:border-border-dark 
                                         bg-background 
+                                        dark:bg-background-dark
                                         rounded 
                                         w-full 
                                         py-2 
@@ -633,8 +640,10 @@ export function PersonaEditor({
                                         name={`starter_messages[${index}].message`}
                                         className={`
                                         border 
-                                        border-border 
+                                        border-border
+                                        dark:border-border-dark 
                                         bg-background 
+                                        dark:bg-background-dark
                                         rounded 
                                         w-full 
                                         py-2 

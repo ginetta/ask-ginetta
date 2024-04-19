@@ -15,11 +15,14 @@ export function Bubble({
       py-1
       rounded-lg 
       border
-      border-border 
+      border-border
+      dark:border-border-dark 
       w-fit 
       flex 
       cursor-pointer ` +
-        (isSelected ? " bg-hover" : " bg-background hover:bg-hover-light")
+        (isSelected
+          ? " bg-hover dark:bg-hover:dark"
+          : " bg-background dark:bg-background-dark hover:bg-hover-light dark:hover:bg-hover-light-dark")
       }
       onClick={onClick}
     >

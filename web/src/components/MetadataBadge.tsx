@@ -10,6 +10,7 @@ export function MetadataBadge({
       className={`
       text-xs 
       text-strong
+      dark:text-strong-dark
       flex
       bg-hover 
       rounded-full 

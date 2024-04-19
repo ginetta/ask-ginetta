@@ -195,7 +195,7 @@ const Main = () => {
             >
               {({ values, isSubmitting }) => (
                 <Form>
-                  <h2 className="font-bold text-emphasis text-xl mb-2">
+                  <h2 className="font-bold text-emphasis dark:text-emphasis-dark text-xl mb-2">
                     Upload Files
                   </h2>
                   <TextFormField
@@ -205,7 +205,9 @@ const Main = () => {
                     autoCompleteDisabled={true}
                   />
 
-                  <p className="mb-1 font-medium text-emphasis">Files:</p>
+                  <p className="mb-1 font-medium text-emphasis dark:text-emphasis-dark">
+                    Files:
+                  </p>
                   <FileUpload
                     selectedFiles={selectedFiles}
                     setSelectedFiles={setSelectedFiles}

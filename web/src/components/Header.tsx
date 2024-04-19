@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { CustomDropdown, DefaultDropdownElement } from "./Dropdown";
 import { FiMessageSquare, FiSearch } from "react-icons/fi";
-import { usePathname } from "next/navigation";
 import { Settings } from "@/app/admin/settings/interfaces";
 
 interface HeaderProps {
@@ -55,7 +54,7 @@ export function Header({ user, settings }: HeaderProps) {
   }, [dropdownOpen]);
 
   return (
-    <header className="border-b border-border bg-background-emphasis">
+    <header className="border-b border-border bg-background-emphasis dark:bg-background-emphasis-dark dark:border-border-dark">
       <div className="mx-8 flex h-16">
         <Link
           className="py-4"
@@ -64,15 +63,20 @@ export function Header({ user, settings }: HeaderProps) {
           }
         >
           <div className="flex">
-            <Image
-              className="mr-2"
-              alt="ginetta logo"
-              decoding="async"
-              width={32}
-              height={32}
-              src="/logo.png"
-            />
-            <h1 className="flex text-2xl text-strong font-bold my-auto">
+            <div className="w-10 h-10 -mt-0.5 text-inverted-dark dark:text-inverted">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 400 400"
+                width="100%"
+              >
+                <path
+                  d="M200 216.2c-35.9 0-65-29.1-65-65s29.1-65 65-65 65 29.1 65 65-29.1 65-65 65m0 97.6c-35.9 0-65-29.1-65-65h130c0 35.8-29.1 65-65 65"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+
+            <h1 className="flex text-2xl text-strong dark:text-strong-dark font-bold my-auto">
               Ask Ginetta
             </h1>
           </div>
@@ -83,19 +87,28 @@ export function Header({ user, settings }: HeaderProps) {
           <>
             <Link
               href="/search"
-              className={"ml-6 h-full flex flex-col hover:bg-hover"}
+              className={
+                "ml-6 h-full flex flex-col hover:bg-hover dark:bg-hover-dark"
+              }
             >
               <div className="w-24 flex my-auto">
-                <div className={"mx-auto flex text-strong px-2"}>
+                <div
+                  className={
+                    "mx-auto flex text-strong dark:text-strong-dark px-2"
+                  }
+                >
                   <FiSearch className="my-auto mr-1" />
                   <h1 className="flex text-sm font-bold my-auto">Search</h1>
                 </div>
               </div>
             </Link>
 
-            <Link href="/chat" className="h-full flex flex-col hover:bg-hover">
+            <Link
+              href="/chat"
+              className="h-full flex flex-col hover:bg-hover dark:bg-hover-dark"
+            >
               <div className="w-24 flex my-auto">
-                <div className="mx-auto flex text-strong px-2">
+                <div className="mx-auto flex text-strong dark:text-strong-dark px-2">
                   <FiMessageSquare className="my-auto mr-1" />
                   <h1 className="flex text-sm font-bold my-auto">Chat</h1>
                 </div>
@@ -105,12 +118,12 @@ export function Header({ user, settings }: HeaderProps) {
         )}
 
         <div className="ml-auto h-full flex flex-col">
-          <div className="my-auto">
+          <div className="my-auto flex">
             <CustomDropdown
               dropdown={
                 <div
                   className={
-                    "absolute right-0 mt-2 bg-background rounded border border-border " +
+                    "absolute right-0 mt-2 bg-background dark:bg-background-dark rounded border border-border dark:border-border-dark " +
                     "w-48 overflow-hidden shadow-xl z-10 text-sm"
                   }
                 >
@@ -129,7 +142,7 @@ export function Header({ user, settings }: HeaderProps) {
                 </div>
               }
             >
-              <div className="hover:bg-hover rounded p-1 w-fit">
+              <div className="hover:bg-hover dark:bg-hover-dark  rounded p-1 w-fit">
                 <div className="my-auto bg-user text-sm rounded-lg px-1.5 select-none">
                   {user && user.email ? user.email[0].toUpperCase() : "A"}
                 </div>
