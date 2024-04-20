@@ -13,3 +13,6 @@ port = 5432
 [mounts]
 source = "pg_data"
 destination = "/var/lib/postgresql/data"
+
+[env]
+PGDATA = "/var/lib/postgresql/data/pgdata"

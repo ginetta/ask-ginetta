@@ -27,5 +27,5 @@ Now navigate to the root directory of the application. This is necessary to run 
 cd ../../../
 
 # Deploy your backend app using fly deploy and the Dockerfile
-fly deploy --config deployment/fly.io/backend/fly.toml --dockerfile Dockerfile -a ask-ginetta-backend
+fly deploy --vm-size=shared-cpu-8x --config deployment/fly.io/backend/fly.toml --dockerfile Dockerfile -a ask-ginetta-backend
 ```

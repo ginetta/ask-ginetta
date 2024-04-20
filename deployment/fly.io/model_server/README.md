@@ -21,5 +21,5 @@ fly apps create ask-ginetta-model-server
 cd ../../../
 
 # Deploy your app using fly deploy, targeting the toml file.
-fly deploy --config ./deployment/fly.io/model_server/fly.toml -a ask-ginetta-model-server
+fly deploy --vm-size=shared-cpu-8x --config ./deployment/fly.io/model_server/fly.toml -a ask-ginetta-model-server
 ```

@@ -12,15 +12,11 @@ protocol = "tcp"
 
 [[services.ports]]
 handlers = ["http"]
-port = 19071
-
-[[services]]
-internal_port = 8081
-protocol = "tcp"
+port = 80
 
 [[services.ports]]
-handlers = ["http"]
-port = 8081
+handlers = ["tls", "http"]
+port = 443
 
 [mounts]
 source = "vespa_data"
