@@ -28,6 +28,10 @@ COPY --from=deps /app/node_modules ./node_modules
 # Ensure the COPY command correctly points to the relative path of the `web` directory
 COPY web/ .
 
+# Connect to backend
+ARG INTERNAL_URL
+ENV INTERNAL_URL=${INTERNAL_URL}
+
 # Disable automatic telemetry collection for Next.js
 ENV NEXT_TELEMETRY_DISABLED 1
 
