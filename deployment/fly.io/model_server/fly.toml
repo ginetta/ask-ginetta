@@ -15,6 +15,13 @@ protocol = "tcp"
 handlers = ["http"]
 port = 80
 
+[[services.tcp_checks]]
+interval = 10000 # Time in milliseconds between checks
+timeout = 2000   # Time in milliseconds to wait before considering the check to fail
+
 [[services.ports]]
 handlers = ["tls", "http"]
 port = 443
+
+[[restart]]
+policy = "on-failure"

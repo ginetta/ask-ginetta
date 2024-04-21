@@ -1,19 +1,23 @@
-# Use the official Vespa image as the base
+# Use the specified Vespa image
 FROM vespaengine/vespa:8.277.17
 
-# Expose the ports Vespa uses
-EXPOSE 19071 8081
+# Set the working directory
+WORKDIR /opt/vespa
 
-# Create a directory that mimics the Docker Compose volume
-RUN mkdir -p /opt/vespa/var
-VOLUME ["/opt/vespa/var"]
-
-# Environment variables for the logging system
-ENV LOG_MAX_SIZE=50m \
-  LOG_MAX_FILE=6
+# Change to vespa user before running the script
+USER vespa
 
 # Copy the custom startup script to the container and make it executable in one step
-COPY --chmod=755 start-vespa.sh /usr/local/bin/start-vespa.sh
+COPY --chmod=755 --chown=vespa:vespa start-vespa.sh /usr/local/bin/start-vespa.sh
 
-# Set the custom script as the entrypoint
-ENTRYPOINT ["/usr/local/bin/start-vespa.sh"]
+# Switch to vespa user
+USER vespa
+
+# Define the volume that will be used to store data
+VOLUME ["/opt/vespa/var"]
+
+# Expose ports used by Vespa for external access
+EXPOSE 19071 8081
+
+# Set the script as the entry point
+ENTRYPOINT ["/usr/local/bin/start-vespa.sh", "configserver,services"]

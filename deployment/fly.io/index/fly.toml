@@ -1,4 +1,4 @@
-app = "ask-ginetta-vespa-index"
+app = "ask-ginetta-index"
 
 kill_signal = "SIGINT"
 kill_timeout = 5
@@ -6,21 +6,43 @@ kill_timeout = 5
 [build]
 dockerfile = "Dockerfile"
 
+[env]
+VESPA_CONFIGSERVERS = "localhost"
+
 [[services]]
-internal_port = 19071
+internal_port = 8081
 protocol = "tcp"
+
+[services.concurrency]
+hard_limit = 25
+soft_limit = 20
 
 [[services.ports]]
 handlers = ["http"]
 port = 80
 
 [[services.ports]]
-handlers = ["tls", "http"]
+handlers = ["http"]
 port = 443
 
-[mounts]
+[[services.tcp_checks]]
+interval = 10000
+timeout = 2000
+
+[[services]]
+internal_port = 19071
+protocol = "tcp"
+
+[services.concurrency]
+hard_limit = 25
+soft_limit = 20
+
+[[services.ports]]
+port = 19071
+
+[[mounts]]
 source = "vespa_data"
 destination = "/opt/vespa/var"
 
-[experimental]
-private_network = true
+[[restart]]
+policy = "on-failure"

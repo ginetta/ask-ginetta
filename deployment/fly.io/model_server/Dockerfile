@@ -11,11 +11,29 @@ ARG DANSWER_VERSION=0.3-dev
 ENV DANSWER_VERSION=${DANSWER_VERSION}
 RUN echo "DANSWER_VERSION: ${DANSWER_VERSION}"
 
-# Fot the index model server only.
+ARG MIN_THREADS_ML_MODELS
+ENV MIN_THREADS_ML_MODELS=${MIN_THREADS_ML_MODELS:-}
+
+ARG LOG_LEVEL
+ENV LOG_LEVEL=${LOG_LEVEL:-info}
+
+# For the index model server only.
 ARG INDEXING_ONLY
 ENV INDEXING_ONLY=${INDEXING_ONLY:-True}
 
+# Install the CPU versions of torch and torchvision directly
+# to save on space. This is a workaround for the large size of the
+# build image when using the regular torch and torchvision packages
+# and their GPU dependencies.
+RUN python -m pip install torch==2.0.1+cpu torchvision==0.15.2+cpu --index-url https://download.pytorch.org/whl/cpu
+
 COPY backend/requirements/model_server.txt /tmp/requirements.txt
+
+# /!\ Key difference with the snippet from ask-ginetta/backend/Dockerfile.model_server here.
+# Remove original (GPU) torch and torchvision from the requirements file
+RUN sed -i '/torch==2.0.1/d' /tmp/requirements.txt && \
+  sed -i '/torchvision==0.15.2/d' /tmp/requirements.txt
+
 RUN pip install --no-cache-dir --upgrade -r /tmp/requirements.txt
 
 RUN apt-get remove -y --allow-remove-essential perl-base && \
@@ -39,4 +57,4 @@ ENV PYTHONPATH /app
 
 EXPOSE 9000
 
-CMD ["uvicorn", "model_server.main:app", "--host", "0.0.0.0", "--port", "9000"]
+CMD ["/bin/sh", "-c", "if [ \"${DISABLE_MODEL_SERVER:-false}\" = \"True\" ]; then echo 'Skipping service...'; exit 0; else exec uvicorn model_server.main:app --host 0.0.0.0 --port 9000; fi"]
