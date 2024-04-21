@@ -1,5 +1,3 @@
-app = "ask-ginetta-model-server"
-
 kill_signal = "SIGINT"
 kill_timeout = 5
 
@@ -7,9 +5,6 @@ kill_timeout = 5
 dockerfile = "Dockerfile"
 
 [env]
-DOCUMENT_ENCODER_MODEL = ""
-NORMALIZE_EMBEDDINGS = ""
-MIN_THREADS_ML_MODELS = ""
 LOG_LEVEL = "info"
 
 [[services]]

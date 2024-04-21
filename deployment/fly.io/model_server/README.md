@@ -1,25 +1,36 @@
 # Ask Ginetta - Model Server Deployment
 
-The Dockerfile and fly.toml provided in this repository can create a Fly.io application for the Danswer model server.
-
-To properly run this deployment, your must first create the app (if not already existing), then navigate to the root of the application to run the deployment command.
-
-This is necessary for the docker build context to correctly access the various files (requirements, model server code) without altering the directory structure in Danswer.
+The Dockerfile and fly.toml provided in this repository can create a Fly.io application for both the inference model server and index model server.
 
 ## Installation
 
-From this directory, run the following commands:
+We're going to install both the Inference and the Index Model Servers in one go. From a deployment standpoint, there's limited difference between the two. They share the same `Dockerfile`. The Index Model server has an extra environment variable (`INDEXING_ONLY`) that has a default `True` value.
+
+1. From this directory, create the apps.
 
 ```
-# Create app
-fly apps create ask-ginetta-model-server
+fly apps create ask-ginetta-index-model-server
+fly apps create ask-ginetta-inference-model-server
+```
 
-# Set the secrets if any, e.g.
-# fly secrets set DOCUMENT_ENCODER_MODEL=your_model --app ask-ginetta-model_server
+2. Allocate a private IP address for both.
 
-# Now navigate to the root directory
+```
+fly ips allocate-v6 --private -a ask-ginetta-index-model-server
+fly ips allocate-v6 --private -a ask-ginetta-inference-model-server
+```
+
+3. Navigate to the root directory to run the deployment command.
+
+> This is necessary so that the Dockerfile adapted from the docker compose file has the right context to build the image.
+
+```
 cd ../../../
+```
 
-# Deploy your app using fly deploy, targeting the toml file.
-fly deploy --vm-size=shared-cpu-8x --config ./deployment/fly.io/model_server/fly.toml -a ask-ginetta-model-server
+4. Deploy your apps.
+
+```
+fly deploy --vm-size=shared-cpu-8x --config ./deployment/fly.io/model_server/fly.toml -a ask-ginetta-index-model-server
+fly deploy --vm-size=shared-cpu-8x --config ./deployment/fly.io/model_server/fly.toml -a ask-ginetta-inference-model-server
 ```

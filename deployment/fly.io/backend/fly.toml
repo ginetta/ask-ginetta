@@ -8,6 +8,9 @@ kill_timeout = 5
 [build]
 dockerfile = "Dockerfile"
 
+[deploy]
+region = "fra"
+
 [env]
 AUTH_TYPE = "disabled"
 SESSION_EXPIRE_TIME_SECONDS = "86400"

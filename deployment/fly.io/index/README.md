@@ -10,6 +10,8 @@ From this directory, run the following commands:
 # Create app
 fly apps create ask-ginetta-index
 
+fly ips allocate-v6 --private -a ask-ginetta-index
+
 # Deploy your app using fly deploy and Vespa official image.
 # Boost memory to prevent the app from crashing.
 fly deploy --config fly.toml -a  ask-ginetta-index --vm-size=performance-4x --image vespaengine/vespa
