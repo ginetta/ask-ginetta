@@ -13,10 +13,6 @@ VESPA_CONFIGSERVERS = "localhost"
 internal_port = 8081
 protocol = "tcp"
 
-[[services]]
-internal_port = 19071
-protocol = "tcp"
-
 [services.concurrency]
 hard_limit = 25
 soft_limit = 20
@@ -39,6 +35,10 @@ restart_limit = 0
 timeout = 2000
 tls_skip_verify = false
 [services.http_checks.headers]
+
+[[services]]
+internal_port = 19071
+protocol = "tcp"
 
 [services.concurrency]
 hard_limit = 25

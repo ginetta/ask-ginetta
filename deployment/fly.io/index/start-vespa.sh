@@ -2,10 +2,11 @@
 
 # Check the current vm.max_map_count
 current_max_map=$(sysctl -n vm.max_map_count)
+required_max_map=262144
+
 echo "Current max_map_count is: $current_max_map"
 
-# Start Vespa's config server and services
-# /opt/vespa/bin/vespa-start-configserver && /opt/vespa/bin/vespa-start-services
+if [ "$current_max_map" -lt "$required_max_map" ]; then
 
 cat <<'EOF'
 :::::::::::::::::::::::::::::::::::::
@@ -22,6 +23,8 @@ exit
 # [END COMMAND]
 
 EOF
+
+fi
 
 # Start Vespa's config server and services
 /opt/vespa/bin/vespa-start-configserver && /opt/vespa/bin/vespa-start-services
