@@ -15,4 +15,4 @@ VOLUME ["/opt/vespa/var"]
 # Expose ports used by Vespa for external access
 EXPOSE 19071 8081
 
-ENTRYPOINT ["/usr/local/bin/start-vespa.sh", "configserver,services"]
+ENTRYPOINT ["/usr/local/bin/start-vespa.sh"]
