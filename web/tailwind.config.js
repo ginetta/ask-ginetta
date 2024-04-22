@@ -1,4 +1,3 @@
-// const colors = require("tailwindcss/colors");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: [
@@ -45,70 +44,60 @@ module.exports = {
       },
       colors: {
         popup: "#ffffff", // white
-        accent: "#6671d0",
-        "accent-hover": "#6671d0",
-        error: "#ef4444", // red-500
-        success: "#059669", // emerald-600
-        alert: "#f59e0b", // amber-600
-        user: "#fb7185", // yellow-400
-        ai: "#60a5fa", // blue-400
+        accent: require("tailwindcss/colors").indigo[500], // indigo-500
+        "accent-hover": require("tailwindcss/colors").indigo[500], // indigo-500
+        error: require("tailwindcss/colors").red[500], // red-500
+        success: require("tailwindcss/colors").emerald[600], // emerald-600
+        alert: require("tailwindcss/colors").amber[600], // amber-600
+        user: require("tailwindcss/colors").yellow[400], // yellow-400
+        ai: require("tailwindcss/colors").blue[400], // blue-400
         "background-strong": {
-          light: "#eaecef",
-          DEFAULT: "#eaecef",
-          dark: "#eaecef",
+          light: require("tailwindcss/colors").neutral[200], // neutral-200
+          DEFAULT: require("tailwindcss/colors").neutral[200], // neutral-200
+          dark: require("tailwindcss/colors").neutral[200], // neutral-200
         },
         "border-light": {
-          light: "#f3f4f6", // gray-100
-          DEFAULT: "#f3f4f6", // gray-100
-          dark: "#111827", // gray-900
+          light: require("tailwindcss/colors").neutral[100], // neutral-100
+          DEFAULT: require("tailwindcss/colors").neutral[100], // neutral-100
+          dark: require("tailwindcss/colors").neutral[900], // neutral-900
         },
         "border-strong": {
-          light: "#9ca3af", // gray-400
-          DEFAULT: "#9ca3af", // gray-400
-          dark: "#6b7280", // gray-500
-        },
-        "border-light": {
-          light: "#f3f4f6", // gray-100
-          DEFAULT: "#f3f4f6", // gray-100
-          dark: "#111827", // gray-900
-        },
-        "border-light": {
-          light: "#f3f4f6", // gray-100
-          DEFAULT: "#f3f4f6", // gray-100,
-          dark: "#111827", // gray-900
+          light: require("tailwindcss/colors").neutral[400], // neutral-400
+          DEFAULT: require("tailwindcss/colors").neutral[400], // neutral-400
+          dark: require("tailwindcss/colors").neutral[500], // neutral-500
         },
         highlight: {
-          text: "#fef9c3", // yellow-100
+          text: require("tailwindcss/colors").yellow[100], // yellow-100
         },
         "hover-light": {
-          light: "#f3f4f6", // gray-100
-          DEFAULT: "#f3f4f6", // gray-100
-          dark: "#111827",
+          light: require("tailwindcss/colors").neutral[100], // neutral-100
+          DEFAULT: require("tailwindcss/colors").neutral[100], // neutral-100
+          dark: require("tailwindcss/colors").neutral[900], // neutral-900
         },
         hover: {
-          light: "#e5e7eb", // gray-200
-          DEFAULT: "#e5e7eb", // gray-200
-          dark: "#1f2937",
+          light: require("tailwindcss/colors").neutral[200], // neutral-200
+          DEFAULT: require("tailwindcss/colors").neutral[200], // neutral-200
+          dark: require("tailwindcss/colors").neutral[800], // neutral-800
         },
         link: {
-          light: "#3b82f6", // blue-500
-          DEFAULT: "#3b82f6",
-          dark: "##dbeafe",
+          light: require("tailwindcss/colors").blue[500], // blue-500
+          DEFAULT: require("tailwindcss/colors").blue[500], // blue-500
+          dark: require("tailwindcss/colors").blue[100], // blue-100
         },
         subtle: {
-          light: "#6b7280", // gray-500
-          DEFAULT: "#6b7280",
-          dark: "#f3f4f6",
+          light: require("tailwindcss/colors").neutral[500], // neutral-500
+          DEFAULT: require("tailwindcss/colors").neutral[500], // neutral-500
+          dark: require("tailwindcss/colors").neutral[200], // neutral-200
         },
         emphasis: {
-          light: "#374151", // gray-700
+          light: require("tailwindcss/colors").neutral[700], // neutral-700
           DEFAULT: "#374151",
           dark: "#d1d5db",
         },
         strong: {
-          light: "#111827", // gray-900
-          DEFAULT: "#111827",
-          dark: "#f9fafb",
+          light: require("tailwindcss/colors").neutral[900], // neutral-900
+          DEFAULT: require("tailwindcss/colors").neutral[900], // neutral-900
+          dark: require("tailwindcss/colors").neutral[200], // neutral-900
         },
         inverted: {
           light: "#ffffff", // white
@@ -116,53 +105,54 @@ module.exports = {
           dark: "#000000",
         },
         default: {
-          light: "#4b5563", // gray-600
-          DEFAULT: "#4b5563", // gray-600
-          dark: "#f8fafc",
+          light: require("tailwindcss/colors").neutral[600], // neutral-600
+          DEFAULT: require("tailwindcss/colors").neutral[600], // neutral-600
+          dark: require("tailwindcss/colors").neutral[100], // neutral-100
         },
         background: {
-          light: "#f9fafb",
-          DEFAULT: "#f9fafb",
-          dark: "#171717",
+          light: require("tailwindcss/colors").neutral[50], // neutral-50
+          DEFAULT: require("tailwindcss/colors").neutral[50], // neutral-50
+          dark: require("tailwindcss/colors").neutral[900], // neutral-900
         },
         "background-emphasis": {
-          light: "#f6f7f8",
-          DEFAULT: "#f6f7f8",
-          dark: "#171717",
+          light: require("tailwindcss/colors").neutral[100], // neutral-100
+          DEFAULT: require("tailwindcss/colors").neutral[100], // neutral-100
+          dark: require("tailwindcss/colors").neutral[900], // neutral-900
         },
         border: {
-          light: "#e5e7eb", // gray-200
-          DEFAULT: "#e5e7eb", // gray-200
-          dark: "#1f2937", // gray-800
+          light: require("tailwindcss/colors").neutral[500] + "22", // neutral-500
+          DEFAULT: require("tailwindcss/colors").neutral[500] + "22", // neutral-500
+          dark: require("tailwindcss/colors").neutral[500] + "22", // neutral-800
         },
         tremor: {
           brand: {
-            faint: "#eff6ff", // blue-50
-            muted: "#bfdbfe", // blue-200
-            subtle: "#60a5fa", // blue-400
-            DEFAULT: "#3b82f6", // blue-500
-            emphasis: "#1d4ed8", // blue-700
+            faint: require("tailwindcss/colors").blue[50], // blue-50
+            muted: require("tailwindcss/colors").blue[200], // blue-200
+            subtle: require("tailwindcss/colors").blue[400], // blue-400
+            DEFAULT: require("tailwindcss/colors").blue[500], // blue-500
+            emphasis: require("tailwindcss/colors").blue[700], // blue-700
             inverted: "#ffffff", // white
           },
           background: {
-            muted: "#f9fafb", // gray-50
-            subtle: "#f3f4f6", // gray-100
+            muted: require("tailwindcss/colors").neutral[50], // neutral-50
+            subtle: require("tailwindcss/colors").neutral[100], // neutral-100
             DEFAULT: "#ffffff", // white
-            emphasis: "#374151", // gray-700
-            dark: "red",
-            light: "#f9fafb",
+            emphasis: require("tailwindcss/colors").neutral[700], // neutral-700
+            light: require("tailwindcss/colors").neutral[50], // neutral-50
           },
           border: {
-            DEFAULT: "#e5e7eb", // gray-200
+            light: require("tailwindcss/colors").neutral[200], // neutral-200
+            DEFAULT: require("tailwindcss/colors").neutral[200], // neutral-200
+            dark: require("tailwindcss/colors").neutral[800], // neutral-800
           },
           ring: {
-            DEFAULT: "#e5e7eb", // gray-200
+            DEFAULT: require("tailwindcss/colors").neutral[200], // neutral-200
           },
           content: {
-            subtle: "#9ca3af", // gray-400
-            DEFAULT: "#4b5563", // gray-600
-            emphasis: "#374151", // gray-700
-            strong: "#111827", // gray-900
+            subtle: require("tailwindcss/colors").neutral[400], // neutral-400
+            DEFAULT: require("tailwindcss/colors").neutral[600], // neutral-600
+            emphasis: require("tailwindcss/colors").neutral[700], // neutral-700
+            strong: require("tailwindcss/colors").neutral[900], // neutral-900
             inverted: "#ffffff", // white
           },
         },
@@ -170,30 +160,31 @@ module.exports = {
         "dark-tremor": {
           brand: {
             faint: "#0B1229", // custom
-            muted: "#172554", // blue-950
-            subtle: "#1e40af", // blue-800
-            DEFAULT: "#3b82f6", // blue-500
-            emphasis: "#60a5fa", // blue-400
-            inverted: "#030712", // gray-950
+            muted: require("tailwindcss/colors").blue[950], // blue-950
+            subtle: require("tailwindcss/colors").blue[800], // blue-800
+            DEFAULT: require("tailwindcss/colors").blue[500], // blue-500
+            emphasis: require("tailwindcss/colors").blue[400], // blue-400
+            inverted: require("tailwindcss/colors").neutral[950], // neutral-950
           },
           background: {
             muted: "#131A2B", // custom
-            subtle: "#1f2937", // gray-800
-            DEFAULT: "#111827", // gray-900
-            emphasis: "#d1d5db", // gray-300
+            subtle: require("tailwindcss/colors").neutral[800], // neutral-800
+            DEFAULT: require("tailwindcss/colors").neutral[900], // neutral-900
+            emphasis: require("tailwindcss/colors").neutral[300], // neutral-300
           },
           border: {
-            light: "#1f2937",
-            DEFAULT: "#1f2937", // gray-800
+            light: require("tailwindcss/colors").neutral[800], // neutral-800
+            DEFAULT: require("tailwindcss/colors").neutral[800], // neutral-800
+            dark: require("tailwindcss/colors").neutral[200], // neutral-200
           },
           ring: {
-            DEFAULT: "#1f2937", // gray-800
+            DEFAULT: require("tailwindcss/colors").neutral[800], // neutral-800
           },
           content: {
-            subtle: "#6b7280", // gray-500
-            DEFAULT: "#d1d5db", // gray-300
-            emphasis: "#f3f4f6", // gray-100
-            strong: "#f9fafb", // gray-50
+            subtle: require("tailwindcss/colors").neutral[500], // neutral-500
+            DEFAULT: require("tailwindcss/colors").neutral[300], // neutral-300
+            emphasis: require("tailwindcss/colors").neutral[100], // neutral-100
+            strong: require("tailwindcss/colors").neutral[50], // neutral-50
             inverted: "#000000", // black
           },
         },

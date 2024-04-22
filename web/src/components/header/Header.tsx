@@ -17,6 +17,7 @@ interface HeaderProps {
 
 export function Header({ user }: HeaderProps) {
   const router = useRouter();
+  const path = usePathname();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -94,7 +95,8 @@ export function Header({ user }: HeaderProps) {
             <Link
               href="/search"
               className={
-                "ml-6 h-full flex flex-col hover:bg-hover dark:bg-hover-dark"
+                "ml-6 h-full flex flex-col hover:bg-hover dark:hover:bg-hover-dark " +
+                (path === "/search" ? "bg-hover dark:bg-hover-dark" : "")
               }
             >
               <div className="w-24 flex my-auto">
@@ -111,7 +113,10 @@ export function Header({ user }: HeaderProps) {
 
             <Link
               href="/chat"
-              className="h-full flex flex-col hover:bg-hover dark:bg-hover-dark"
+              className={
+                "h-full flex flex-col hover:bg-hover dark:hover:bg-hover-dark " +
+                (path === "/chat" ? "bg-hover dark:bg-hover-dark" : "")
+              }
             >
               <div className="w-24 flex my-auto">
                 <div className="mx-auto flex text-strong dark:text-strong-dark px-2">
