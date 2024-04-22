@@ -10,8 +10,8 @@ if [ "$current_max_map" -lt "$required_max_map" ]; then
 
 cat <<'EOF'
 :::::::::::::::::::::::::::::::::::::
-::: To finalize the deployment,     :::
-::: ssh into the Vespa container   :::
+::: To finalize the deployment,   :::
+::: ssh into the Vespa container  :::
 ::: and run the following command :::
 :::::::::::::::::::::::::::::::::::::
 
