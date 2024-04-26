@@ -1,4 +1,4 @@
-aiohttp==3.9.2
+aiohttp==3.9.4
 alembic==1.10.4
 asyncpg==0.27.0
 atlassian-python-api==3.37.0
@@ -24,7 +24,7 @@ httpx-oauth==0.11.2
 huggingface-hub==0.20.1
 jira==3.5.1
 langchain==0.1.9
-litellm==1.34.21
+litellm==1.34.42
 llama-index==0.9.45
 Mako==1.2.4
 msal==1.26.0
@@ -38,7 +38,7 @@ playwright==1.41.2
 psutil==5.9.5
 psycopg2-binary==2.9.9
 pycryptodome==3.19.1
-pydantic==1.10.7
+pydantic==1.10.13
 PyGithub==1.58.2
 python-dateutil==2.8.2
 python-gitlab==3.9.0
@@ -67,7 +67,7 @@ tiktoken==0.4.0
 timeago==1.0.16
 torch==2.0.1
 torchvision==0.15.2
-transformers==4.39.2
+transformers==4.38.0
 uvicorn==0.21.1
 zulip==0.8.2
 hubspot-api-client==8.1.0
