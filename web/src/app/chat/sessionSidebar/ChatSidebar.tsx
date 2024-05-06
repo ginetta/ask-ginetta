@@ -54,8 +54,8 @@ export const ChatSidebar = ({
     return (
       <div
         className={
-          "font-bold p-1 rounded-lg hover:bg-hover cursor-pointer " +
-          (openTab === tab ? "bg-hover" : "")
+          "font-bold p-1 rounded-lg hover:bg-hover dark:hover:bg-hover-dark cursor-pointer " +
+          (openTab === tab ? "bg-hover dark:bg-hover-dark" : "")
         }
         onClick={() => {
           setOpenTab(tab);

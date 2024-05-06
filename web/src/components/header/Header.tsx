@@ -4,7 +4,7 @@ import { User } from "@/lib/types";
 import { logout } from "@/lib/user";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { CustomDropdown, DefaultDropdownElement } from "../Dropdown";
 import { FiMessageSquare, FiSearch } from "react-icons/fi";

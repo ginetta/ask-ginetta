@@ -168,7 +168,7 @@ export const AIMessage = ({
                     .filter(([_, document]) => document.semantic_identifier)
                     .map(([citationKey, document], ind) => {
                       const display = (
-                        <div className="max-w-350 text-ellipsis flex text-sm border border-border py-1 px-2 rounded flex">
+                        <div className="max-w-350 text-ellipsis flex text-sm border border-border dark:border-border-dark py-1 px-2 rounded flex">
                           <div className="mr-1 my-auto">
                             <SourceIcon
                               sourceType={document.source_type}

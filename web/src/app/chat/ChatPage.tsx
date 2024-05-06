@@ -249,10 +249,10 @@ export function ChatPage({
           (persona) => persona.id === existingChatSessionPersonaId
         )
       : defaultSelectedPersonaId !== undefined
-        ? availablePersonas.find(
-            (persona) => persona.id === defaultSelectedPersonaId
-          )
-        : undefined
+      ? availablePersonas.find(
+          (persona) => persona.id === defaultSelectedPersonaId
+        )
+      : undefined
   );
   const livePersona = selectedPersona || availablePersonas[0];
 
@@ -632,7 +632,7 @@ export function ChatPage({
       <HealthCheckBanner />
       <InstantSSRAutoRefresh />
 
-      <div className="flex relative bg-background dark:bg-background-dark text-default overflow-x-hidden">
+      <div className="flex relative bg-background dark:bg-background-dark text-default dark:text-default-dark overflow-x-hidden">
         <ChatSidebar
           existingChats={chatSessions}
           currentChatSession={selectedChatSession}
@@ -719,7 +719,7 @@ export function ChatPage({
                       ref={scrollableDivRef}
                     >
                       {livePersona && (
-                        <div className="sticky top-0 left-80 z-10 w-full bg-background/90 flex">
+                        <div className="sticky top-0 left-80 z-10 w-full bg-background/90 dark:bg-background-dark/90 flex">
                           <div className="ml-2 p-1 rounded mt-2 w-fit">
                             <ChatPersonaSelector
                               personas={availablePersonas}
@@ -932,17 +932,17 @@ export function ChatPage({
                           !isFetchingChatMessages && (
                             <div
                               className={`
-                            mx-auto 
-                            px-4 
-                            w-searchbar-xs 
-                            2xl:w-searchbar-sm 
-                            3xl:w-searchbar 
-                            grid 
-                            gap-4 
-                            grid-cols-1 
-                            grid-rows-1 
-                            mt-4 
-                            md:grid-cols-2 
+                            mx-auto
+                            px-4
+                            w-searchbar-xs
+                            2xl:w-searchbar-sm
+                            3xl:w-searchbar
+                            grid
+                            gap-4
+                            grid-cols-1
+                            grid-rows-1
+                            mt-4
+                            md:grid-cols-2
                             mb-6`}
                             >
                               {livePersona.starter_messages.map(
@@ -967,7 +967,7 @@ export function ChatPage({
                       </div>
                     </div>
 
-                    <div className="absolute bottom-0 z-10 w-full bg-background border-t border-border">
+                    <div className="absolute bottom-0 z-10 w-full bg-background dark:bg-background-dark border-t border-border">
                       <div className="w-full pb-4 pt-2">
                         {!retrievalDisabled && (
                           <div className="flex">
@@ -999,9 +999,9 @@ export function ChatPage({
                               h-fit
                               flex
                               flex-col
-                              border 
-                              border-border 
-                              rounded-lg 
+                              border
+                              border-border
+                              rounded-lg
                               [&:has(textarea:focus)]::ring-1
                               [&:has(textarea:focus)]::ring-black
                             `}
@@ -1027,28 +1027,29 @@ export function ChatPage({
                               <textarea
                                 ref={textareaRef}
                                 className={`
-                                  m-0 
-                                  w-full 
+                                  m-0
+                                  w-full
                                   shrink
-                                  resize-none 
-                                  border-0 
-                                  bg-transparent 
+                                  resize-none
+                                  border-0
+                                  bg-transparent
                                   ${
                                     (textareaRef?.current?.scrollHeight || 0) >
                                     MAX_INPUT_HEIGHT
                                       ? "overflow-y-auto"
                                       : ""
-                                  } 
-                                  whitespace-normal 
+                                  }
+                                  whitespace-normal
                                   break-word
                                   overscroll-contain
-                                  outline-none 
-                                  placeholder-gray-400 
+                                  outline-none
+                                  placeholder-gray-400
                                   overflow-hidden
                                   resize-none
+                                  dark:text-white
                                   pl-4
-                                  pr-12 
-                                  py-4 
+                                  pr-12
+                                  py-4
                                   h-14`}
                                 autoFocus
                                 style={{ scrollbarWidth: "thin" }}

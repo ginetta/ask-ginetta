@@ -42,6 +42,13 @@ module.exports = {
       maxWidth: {
         "document-sidebar": "1000px",
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            "--tw-prose-bold": "currentColor",
+          },
+        },
+      }),
       colors: {
         popup: "#ffffff", // white
         accent: require("tailwindcss/colors").indigo[500], // indigo-500
@@ -122,7 +129,7 @@ module.exports = {
         border: {
           light: require("tailwindcss/colors").neutral[500] + "22", // neutral-500
           DEFAULT: require("tailwindcss/colors").neutral[500] + "22", // neutral-500
-          dark: require("tailwindcss/colors").neutral[500] + "22", // neutral-800
+          dark: require("tailwindcss/colors").neutral[200] + "22", // neutral-800
         },
         tremor: {
           brand: {
