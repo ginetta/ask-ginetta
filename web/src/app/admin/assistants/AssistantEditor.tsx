@@ -43,7 +43,9 @@ const DEFAULT_LLM_PROVIDER_TO_DISPLAY_NAME: Record<string, string> = {
 
 function Label({ children }: { children: string | JSX.Element }) {
   return (
-    <div className="block font-medium text-base text-emphasis">{children}</div>
+    <div className="block font-medium text-base text-emphasis dark:text-emphasis-dark">
+      {children}
+    </div>
   );
 }
 
@@ -313,8 +315,8 @@ export function AssistantEditor({
                     name="task_prompt"
                     label="Task Prompt (Optional)"
                     isTextArea={true}
-                    subtext={`Give specific instructions as to what to do with the user query. 
-                      For example, "Find any relevant sections from the provided documents that can 
+                    subtext={`Give specific instructions as to what to do with the user query.
+                      For example, "Find any relevant sections from the provided documents that can
                       help the user resolve their issue and explain how they are relevant."`}
                     onChange={(e) => {
                       setFieldValue("task_prompt", e.target.value);
@@ -352,8 +354,8 @@ export function AssistantEditor({
                         name="disable_retrieval"
                         label="Disable Retrieval"
                         subtext={`
-                          If set, the Assistant will not fetch any context documents to aid in the response. 
-                          Instead, it will only use the supplied system and task prompts plus the user 
+                          If set, the Assistant will not fetch any context documents to aid in the response.
+                          Instead, it will only use the supplied system and task prompts plus the user
                           query in order to generate a response`}
                         onChange={(e) => {
                           setFieldValue("disable_retrieval", e.target.checked);
@@ -453,9 +455,9 @@ export function AssistantEditor({
                         name="include_citations"
                         label="Include Citations"
                         subtext={`
-                        If set, the response will include bracket citations ([1], [2], etc.) 
-                        for each document used by the LLM to help inform the response. This is 
-                        the same technique used by the default Assistants. In general, we recommend 
+                        If set, the response will include bracket citations ([1], [2], etc.)
+                        for each document used by the LLM to help inform the response. This is
+                        the same technique used by the default Assistants. In general, we recommend
                         to leave this enabled in order to increase trust in the LLM answer.`}
                       />
                     </>
@@ -611,7 +613,7 @@ export function AssistantEditor({
                                 className={index === 0 ? "mt-2" : "mt-6"}
                               >
                                 <div className="flex">
-                                  <div className="w-full mr-6 border border-border p-3 rounded">
+                                  <div className="w-full mr-6 border border-border dark:border-border-dark p-3 rounded">
                                     <div>
                                       <Label>Name</Label>
                                       <SubLabel>
@@ -622,13 +624,15 @@ export function AssistantEditor({
                                       <Field
                                         name={`starter_messages[${index}].name`}
                                         className={`
-                                        border 
-                                        border-border 
-                                        bg-background 
-                                        rounded 
-                                        w-full 
-                                        py-2 
-                                        px-3 
+                                        border
+                                        border-border
+                                        dark:border-border-dark
+                                        bg-background
+                                        dark:bg-background-dark
+                                        rounded
+                                        w-full
+                                        py-2
+                                        px-3
                                         mr-4
                                       `}
                                         autoComplete="off"
@@ -651,13 +655,15 @@ export function AssistantEditor({
                                       <Field
                                         name={`starter_messages.${index}.description`}
                                         className={`
-                                        border 
-                                        border-border 
-                                        bg-background 
-                                        rounded 
-                                        w-full 
-                                        py-2 
-                                        px-3 
+                                        border
+                                        border-border
+                                        dark:border-border-dark
+                                        bg-background
+                                        dark:bg-background-dark
+                                        rounded
+                                        w-full
+                                        py-2
+                                        px-3
                                         mr-4
                                       `}
                                         autoComplete="off"
@@ -682,13 +688,15 @@ export function AssistantEditor({
                                       <Field
                                         name={`starter_messages[${index}].message`}
                                         className={`
-                                        border 
-                                        border-border 
-                                        bg-background 
-                                        rounded 
-                                        w-full 
-                                        py-2 
-                                        px-3 
+                                        border
+                                        border-border
+                                        dark:border-border-dark
+                                        bg-background
+                                        dark:bg-background-dark
+                                        rounded
+                                        w-full
+                                        py-2
+                                        px-3
                                         mr-4
                                       `}
                                         as="textarea"

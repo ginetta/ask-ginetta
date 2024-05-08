@@ -341,8 +341,8 @@ export const SlackBotCreationForm = ({
                                       flex 
                                       cursor-pointer ` +
                                       (isSelected
-                                        ? " bg-hover"
-                                        : " bg-background hover:bg-hover-light")
+                                        ? "bg-hover dark:bg-hover-dark"
+                                        : " bg-background hover:bg-hover-light dark:bg-background-dark dark:hover:bg-hover-light-dark")
                                     }
                                     onClick={() => {
                                       if (isSelected) {

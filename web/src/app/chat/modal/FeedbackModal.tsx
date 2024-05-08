@@ -21,7 +21,7 @@ export const FeedbackModal = ({
   return (
     <ModalWrapper onClose={onClose} modalClassName="max-w-5xl">
       <>
-        <h2 className="text-2xl text-emphasis font-bold mb-4 flex">
+        <h2 className="text-2xl text-emphasis dark:text-emphasis-dark font-bold mb-4 flex">
           <div className="mr-1 my-auto">
             {feedbackType === "like" ? (
               <FiThumbsUp className="text-green-500 my-auto mr-2" />
@@ -46,6 +46,7 @@ export const FeedbackModal = ({
               pr-14 
               py-4 
               bg-background 
+              dark:bg-background-dark
               overflow-hidden
               h-28
               whitespace-normal 
@@ -72,7 +73,7 @@ export const FeedbackModal = ({
 
         <div className="flex mt-2">
           <button
-            className="bg-accent text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none mx-auto"
+            className="bg-accent text-inverted dark:text-inverted-dark py-2 px-4 rounded hover:bg-blue-600 focus:outline-none mx-auto"
             onClick={() => onSubmit(message)}
           >
             Submit feedback

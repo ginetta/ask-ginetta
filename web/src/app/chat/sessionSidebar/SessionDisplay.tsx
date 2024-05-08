@@ -98,7 +98,7 @@ export function ChatSessionDisplay({
                   className="-my-px px-1 mr-2 w-full rounded"
                 />
               ) : (
-                <p className="break-all overflow-hidden whitespace-nowrap mr-3 text-emphasis">
+                <p className="break-all overflow-hidden whitespace-nowrap mr-3 text-emphasis dark:text-emphasis-dark">
                   {chatName || `Chat ${chatSession.id}`}
                 </p>
               )}
@@ -143,7 +143,7 @@ export function ChatSessionDisplay({
                             </div>
                           }
                           popover={
-                            <div className="border border-border rounded-lg bg-background z-50 w-32">
+                            <div className="border border-border dark:border-border-dark rounded-lg bg-background dark:bg-background-dark z-50 w-32">
                               <DefaultDropdownElement
                                 name="Share"
                                 icon={FiShare2}
@@ -170,10 +170,10 @@ export function ChatSessionDisplay({
                 ))}
             </div>
             {isSelected && !isRenamingChat && (
-              <div className="absolute bottom-0 right-0 top-0 bg-gradient-to-l to-transparent from-hover w-20 from-60% rounded" />
+              <div className="absolute bottom-0 right-0 top-0 rounded" />
             )}
             {!isSelected && (
-              <div className="absolute bottom-0 right-0 top-0 bg-gradient-to-l to-transparent from-background w-8 from-0% rounded" />
+              <div className="absolute bottom-0 right-0 top-0 rounded" />
             )}
           </>
         </BasicSelectable>

@@ -18,12 +18,12 @@ interface Props {
 export const ConnectorEditPopup = ({ existingConnector, onSubmit }: Props) => {
   return (
     <Modal onOutsideClick={onSubmit}>
-      <div className="bg-background">
+      <div className="bg-background dark:bg-background-dark">
         <h2 className="text-xl font-bold flex">
           Update Google Drive Connector
           <div
             onClick={onSubmit}
-            className="ml-auto hover:bg-hover p-1.5 rounded"
+            className="ml-auto hover:bg-hover dark:hover:bg-hover-dark p-1.5 rounded"
           >
             <XIcon
               size={20}

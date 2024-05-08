@@ -54,8 +54,8 @@ export const ChatSidebar = ({
     return (
       <div
         className={
-          "font-bold p-1 rounded-lg hover:bg-hover cursor-pointer " +
-          (openTab === tab ? "bg-hover" : "")
+          "font-bold p-1 rounded-lg hover:bg-hover dark:hover:bg-hover-dark cursor-pointer " +
+          (openTab === tab ? "bg-hover dark:bg-hover-dark" : "")
         }
         onClick={() => {
           setOpenTab(tab);
@@ -111,10 +111,11 @@ export const ChatSidebar = ({
         w-64
         3xl:w-72
         ${HEADER_PADDING}
-        border-r 
-        border-border 
-        flex 
-        flex-col 
+        border-r
+        border-border
+        dark:border-border-dark
+        flex
+        flex-col
         h-screen
         transition-transform`}
       id="chat-sidebar"
@@ -167,27 +168,27 @@ export const ChatSidebar = ({
       )}
 
       <div
-        className="mt-auto py-2 border-t border-border px-3"
+        className="mt-auto py-2 border-t border-border dark:border-border-dark px-3"
         ref={userInfoRef}
       >
-        <div className="relative text-strong">
+        <div className="relative text-strong dark:text-strong-dark">
           {userInfoVisible && (
             <div
               className={
                 (user ? "translate-y-[-110%]" : "translate-y-[-115%]") +
-                " absolute top-0 bg-background border border-border z-30 w-full rounded text-strong text-sm"
+                " absolute top-0 bg-background dark:bg-background-dark border border-border dark:border-border-dark z-30 w-full rounded text-strong dark:text-strong-dark text-sm"
               }
             >
               <Link
                 href="/search"
-                className="flex py-3 px-4 cursor-pointer hover:bg-hover"
+                className="flex py-3 px-4 cursor-pointer hover:bg-hover dark:bg-hover-dark"
               >
                 <FiSearch className="my-auto mr-2" />
                 Danswer Search
               </Link>
               <Link
                 href="/chat"
-                className="flex py-3 px-4 cursor-pointer hover:bg-hover"
+                className="flex py-3 px-4 cursor-pointer hover:bg-hover dark:hover:bg-hover-dark"
               >
                 <FiMessageSquare className="my-auto mr-2" />
                 Danswer Chat
@@ -195,7 +196,7 @@ export const ChatSidebar = ({
               {(!user || user.role === "admin") && (
                 <Link
                   href="/admin/indexing/status"
-                  className="flex py-3 px-4 cursor-pointer border-t border-border hover:bg-hover"
+                  className="flex py-3 px-4 cursor-pointer border-t border-border dark:border-border-dark hover:bg-hover dark:hover:bg-hover-dark"
                 >
                   <FiTool className="my-auto mr-2" />
                   Admin Panel
@@ -204,7 +205,7 @@ export const ChatSidebar = ({
               {user && (
                 <div
                   onClick={handleLogout}
-                  className="flex py-3 px-4 cursor-pointer border-t border-border rounded hover:bg-hover"
+                  className="flex py-3 px-4 cursor-pointer border-t border-border dark:border-border-dark rounded hover:bg-hover hover:bg-hover"
                 >
                   <FiLogOut className="my-auto mr-2" />
                   Log out

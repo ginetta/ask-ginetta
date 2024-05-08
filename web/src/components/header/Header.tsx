@@ -4,7 +4,7 @@ import { User } from "@/lib/types";
 import { logout } from "@/lib/user";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { CustomDropdown, DefaultDropdownElement } from "../Dropdown";
 import { FiMessageSquare, FiSearch } from "react-icons/fi";
@@ -17,6 +17,7 @@ interface HeaderProps {
 
 export function Header({ user }: HeaderProps) {
   const router = useRouter();
+  const path = usePathname();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -69,11 +70,21 @@ export function Header({ user }: HeaderProps) {
           }
         >
           <div className="flex">
-            <div className="h-[32px] w-[30px]">
-              <Image src="/logo.png" alt="Logo" width="1419" height="1520" />
+            <div className="w-10 h-10 -mt-0.5 text-inverted-dark dark:text-inverted">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 400 400"
+                width="100%"
+              >
+                <path
+                  d="M200 216.2c-35.9 0-65-29.1-65-65s29.1-65 65-65 65 29.1 65 65-29.1 65-65 65m0 97.6c-35.9 0-65-29.1-65-65h130c0 35.8-29.1 65-65 65"
+                  fill="currentColor"
+                />
+              </svg>
             </div>
-            <h1 className="flex text-2xl text-strong font-bold my-auto">
-              Danswer
+
+            <h1 className="flex text-2xl text-strong dark:text-strong-dark font-bold my-auto">
+              Ask Ginetta
             </h1>
           </div>
         </Link>
@@ -83,19 +94,32 @@ export function Header({ user }: HeaderProps) {
           <>
             <Link
               href="/search"
-              className={"ml-6 h-full flex flex-col hover:bg-hover"}
+              className={
+                "ml-6 h-full flex flex-col hover:bg-hover dark:hover:bg-hover-dark " +
+                (path === "/search" ? "bg-hover dark:bg-hover-dark" : "")
+              }
             >
               <div className="w-24 flex my-auto">
-                <div className={"mx-auto flex text-strong px-2"}>
+                <div
+                  className={
+                    "mx-auto flex text-strong dark:text-strong-dark px-2"
+                  }
+                >
                   <FiSearch className="my-auto mr-1" />
                   <h1 className="flex text-sm font-bold my-auto">Search</h1>
                 </div>
               </div>
             </Link>
 
-            <Link href="/chat" className="h-full flex flex-col hover:bg-hover">
+            <Link
+              href="/chat"
+              className={
+                "h-full flex flex-col hover:bg-hover dark:hover:bg-hover-dark " +
+                (path === "/chat" ? "bg-hover dark:bg-hover-dark" : "")
+              }
+            >
               <div className="w-24 flex my-auto">
-                <div className="mx-auto flex text-strong px-2">
+                <div className="mx-auto flex text-strong dark:text-strong-dark px-2">
                   <FiMessageSquare className="my-auto mr-1" />
                   <h1 className="flex text-sm font-bold my-auto">Chat</h1>
                 </div>
@@ -105,12 +129,12 @@ export function Header({ user }: HeaderProps) {
         )}
 
         <div className="ml-auto h-full flex flex-col">
-          <div className="my-auto">
+          <div className="my-auto flex">
             <CustomDropdown
               dropdown={
                 <div
                   className={
-                    "absolute right-0 mt-2 bg-background rounded border border-border " +
+                    "absolute right-0 mt-2 bg-background dark:bg-background-dark rounded border border-border dark:border-border-dark " +
                     "w-48 overflow-hidden shadow-xl z-10 text-sm"
                   }
                 >
@@ -129,7 +153,7 @@ export function Header({ user }: HeaderProps) {
                 </div>
               }
             >
-              <div className="hover:bg-hover rounded p-1 w-fit">
+              <div className="hover:bg-hover dark:bg-hover-dark  rounded p-1 w-fit">
                 <div className="my-auto bg-user text-sm rounded-lg px-1.5 select-none">
                   {user && user.email ? user.email[0].toUpperCase() : "A"}
                 </div>
@@ -141,7 +165,3 @@ export function Header({ user }: HeaderProps) {
     </HeaderWrapper>
   );
 }
-
-/* 
-
-*/

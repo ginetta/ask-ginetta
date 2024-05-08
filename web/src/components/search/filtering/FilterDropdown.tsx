@@ -27,8 +27,10 @@ export function FilterDropdown({
             className={`
           border 
           border-border 
+          dark:border-border-dark
           rounded-lg 
           bg-background
+          dark:bg-background-dark
           flex 
           flex-col 
           w-64 
@@ -49,7 +51,9 @@ export function FilterDropdown({
                     select-none 
                     cursor-pointer 
                     text-emphasis
+                    dark:text-emphasis-dark
                     hover:bg-hover-light
+                    dark:hover:bg-hover-dark
                     ${
                       ind === options.length - 1 ? "" : "border-b border-border"
                     } 
@@ -82,8 +86,10 @@ export function FilterDropdown({
         rounded-lg 
         border 
         border-border
+        dark:border-border-dark
         cursor-pointer 
-        hover:bg-hover-light`}
+        hover:bg-hover-light
+        dark:hover:bg-hover-light-dark`}
         >
           {icon}
           {selected.length === 0 ? (

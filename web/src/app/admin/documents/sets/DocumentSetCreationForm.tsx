@@ -136,12 +136,13 @@ export const DocumentSetCreationForm = ({
                               rounded-lg 
                               border
                               border-border 
+                              dark:border-border-dark
                               w-fit 
                               flex 
                               cursor-pointer ` +
                           (isSelected
-                            ? " bg-background-strong"
-                            : " hover:bg-hover")
+                            ? " bg-background-strong dark:bg-background-strong-dark"
+                            : " hover:bg-hover dark:hover:bg-hover-dark")
                         }
                         onClick={() => {
                           if (isSelected) {
@@ -211,13 +212,14 @@ export const DocumentSetCreationForm = ({
                               py-1
                               rounded-lg 
                               border
-                              border-border 
+                              border-border
+                              dark:border-border-dark 
                               w-fit 
                               flex 
                               cursor-pointer ` +
                                   (isSelected
-                                    ? " bg-background-strong"
-                                    : " hover:bg-hover")
+                                    ? " bg-background-strong dark:bg-background-strong-dark"
+                                    : " hover:bg-hover dark:hover:bg-hover-dark")
                                 }
                                 onClick={() => {
                                   if (isSelected) {

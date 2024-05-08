@@ -17,7 +17,7 @@ export function ChatTab({
         if (chatSessions.length > 0) {
           return (
             <div key={dateRange}>
-              <div className="text-xs text-subtle flex pb-0.5 mb-1.5 mt-5 font-bold">
+              <div className="text-xs text-subtle dark:text-subtle-dark flex pb-0.5 mb-1.5 mt-5 font-bold">
                 {dateRange}
               </div>
               {chatSessions.map((chat) => {

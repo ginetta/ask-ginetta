@@ -96,7 +96,7 @@ export function CCPairIndexingStatusTable({
               <TableRow
                 key={ccPairsIndexingStatus.cc_pair_id}
                 className={
-                  "hover:bg-hover-light bg-background cursor-pointer relative"
+                  "hover:bg-hover-light dark:hover:bg-hover-light-dark bg-background dark:bg-background-dark cursor-pointer relative"
                 }
               >
                 <TableCell>

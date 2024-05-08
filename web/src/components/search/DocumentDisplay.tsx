@@ -122,7 +122,7 @@ export function DocumentMetadataBlock({
       )}
       {Object.entries(document.metadata).length > 0 && (
         <>
-          <div className="pl-1 border-l border-border" />
+          <div className="pl-1 border-l border-border dark:border-border-dark" />
           {Object.entries(document.metadata)
             .filter(
               ([key, value]) => (key + value).length <= MAXIMUM_TAG_LENGTH
@@ -167,7 +167,7 @@ export const DocumentDisplay = ({
   return (
     <div
       key={document.semantic_identifier}
-      className="text-sm border-b border-border mb-3"
+      className="text-sm border-b border-border dark:border-border-dark mb-3"
       onMouseEnter={() => {
         setIsHovered(true);
       }}
@@ -204,7 +204,9 @@ export const DocumentDisplay = ({
               className={`
                 text-xs
                 text-emphasis
+                dark:text-emphasis-dark
                 bg-hover
+                dark:bg-hover-dark
                 rounded
                 p-0.5
                 w-fit

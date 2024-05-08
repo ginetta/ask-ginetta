@@ -13,14 +13,17 @@ export function BasicClickable({
       className={`
         border 
         border-border 
+        dark:border-border-dark
         shadow-md
         rounded
         font-medium 
         text-emphasis 
+        dark:text-emphasis-dark
         text-sm
         p-1
         select-none
         hover:bg-hover
+        dark:hover:bg-hover-dark
         ${fullWidth ? "w-full" : ""}`}
     >
       {children}
@@ -43,15 +46,19 @@ export function EmphasizedClickable({
       className={`
         border 
         border-border 
+        dark:border-border-dark
         shadow-md
         rounded
         font-medium 
         text-emphasis
+        dark:text-emphasis-dark
         text-sm
         p-1
         select-none
         bg-hover-light
+        dark:bg-hover-light-dark
         hover:bg-hover
+        dark:hover:bg-hover-dark
         ${fullWidth ? "w-full" : ""}`}
     >
       {children}
@@ -76,11 +83,16 @@ export function BasicSelectable({
         rounded
         font-medium 
         text-emphasis 
+        dark:text-emphasis-dark
         text-sm
         p-1
         select-none
-        ${hasBorder ? "border border-border" : ""}
-        ${selected ? "bg-hover" : "hover:bg-hover"}
+        ${hasBorder ? "border border-border dark:border-border-dark" : ""}
+        ${
+          selected
+            ? "bg-hover dark:bg-hover-dark"
+            : "hover:bg-hover dark:hover:bg-hover-dark"
+        }
         ${fullWidth ? "w-full" : ""}`}
     >
       {children}

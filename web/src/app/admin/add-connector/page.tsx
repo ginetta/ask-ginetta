@@ -18,8 +18,10 @@ function SourceTile({ sourceMetadata }: { sourceMetadata: SourceMetadata }) {
         w-40 
         cursor-pointer
         bg-hover-light
+        dark:bg-hover-light-dark
         shadow-md
         hover:bg-hover
+        dark:hover:bg-hover-dark
       `}
       href={sourceMetadata.adminUrl}
     >

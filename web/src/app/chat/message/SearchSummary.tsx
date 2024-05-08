@@ -80,8 +80,14 @@ export function SearchSummary({
 
   const searchingForDisplay = (
     <div className={`flex p-1 rounded ${isOverflowed && "cursor-default"}`}>
-      <FiSearch className="mr-2 my-auto" size={14} />
-      <div className="line-clamp-1 break-all px-0.5" ref={searchingForRef}>
+      <FiSearch
+        className="mr-2 my-auto text-inverted-dark dark:text-inverted"
+        size={14}
+      />
+      <div
+        className="line-clamp-1 break-all px-0.5 text-inverted-dark dark:text-inverted"
+        ref={searchingForRef}
+      >
         Searching for: <i>{finalQuery}</i>
       </div>
     </div>
