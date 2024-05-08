@@ -6,7 +6,7 @@ from typing import cast
 from sqlalchemy.orm import Session
 
 from danswer.chat.chat_utils import create_chat_chain
-from danswer.chat.chat_utils import llm_doc_from_inference_chunk
+from danswer.chat.chat_utils import llm_doc_from_inference_section
 from danswer.chat.models import CitationInfo
 from danswer.chat.models import DanswerAnswerPiece
 from danswer.chat.models import LlmDoc
@@ -30,21 +30,22 @@ from danswer.db.engine import get_session_context_manager
 from danswer.db.models import SearchDoc as DbSearchDoc
 from danswer.db.models import User
 from danswer.document_index.factory import get_default_document_index
+from danswer.file_store.models import ChatFileType
+from danswer.file_store.utils import load_all_chat_files
 from danswer.llm.answering.answer import Answer
 from danswer.llm.answering.models import AnswerStyleConfig
 from danswer.llm.answering.models import CitationConfig
 from danswer.llm.answering.models import DocumentPruningConfig
-from danswer.llm.answering.models import LLMConfig
 from danswer.llm.answering.models import PreviousMessage
 from danswer.llm.answering.models import PromptConfig
 from danswer.llm.exceptions import GenAIDisabledException
-from danswer.llm.factory import get_default_llm
+from danswer.llm.factory import get_llm_for_persona
 from danswer.llm.utils import get_default_llm_tokenizer
 from danswer.search.models import OptionalSearchSetting
 from danswer.search.models import SearchRequest
 from danswer.search.pipeline import SearchPipeline
 from danswer.search.retrieval.search_runner import inference_documents_from_ids
-from danswer.search.utils import chunks_to_search_docs
+from danswer.search.utils import chunks_or_sections_to_search_docs
 from danswer.secondary_llm_flows.choose_search import check_if_need_search
 from danswer.secondary_llm_flows.query_expansion import history_based_query_rephrase
 from danswer.server.query_and_chat.models import ChatMessageDetail
@@ -135,8 +136,8 @@ def stream_chat_message_objects(
             )
 
         try:
-            llm = get_default_llm(
-                gen_ai_model_version_override=persona.llm_model_version_override
+            llm = get_llm_for_persona(
+                persona, new_msg_req.llm_override or chat_session.llm_override
             )
         except GenAIDisabledException:
             llm = None
@@ -175,6 +176,10 @@ def stream_chat_message_objects(
                 message=message_text,
                 token_count=len(llm_tokenizer_encode_func(message_text)),
                 message_type=MessageType.USER,
+                files=[
+                    {"id": str(file_id), "type": ChatFileType.IMAGE}
+                    for file_id in new_msg_req.file_ids
+                ],
                 db_session=db_session,
                 commit=False,
             )
@@ -203,9 +208,20 @@ def stream_chat_message_objects(
                     "when the last message is not a user message."
                 )
 
+        # load all files needed for this chat chain in memory
+        files = load_all_chat_files(history_msgs, new_msg_req.file_ids, db_session)
+        latest_query_files = [
+            file for file in files if file.file_id in new_msg_req.file_ids
+        ]
+
         run_search = False
         # Retrieval options are only None if reference_doc_ids are provided
-        if retrieval_options is not None and persona.num_chunks != 0:
+        # Also don't perform search if the user uploaded at least one file - just use the files
+        if (
+            retrieval_options is not None
+            and persona.num_chunks != 0
+            and not new_msg_req.file_ids
+        ):
             if retrieval_options.run_search == OptionalSearchSetting.ALWAYS:
                 run_search = True
             elif retrieval_options.run_search == OptionalSearchSetting.NEVER:
@@ -216,6 +232,7 @@ def stream_chat_message_objects(
                 )
 
         rephrased_query = None
+        llm_relevance_list = None
         if reference_doc_ids:
             identifier_tuples = get_doc_query_identifiers_from_model(
                 search_doc_ids=reference_doc_ids,
@@ -263,13 +280,16 @@ def stream_chat_message_objects(
                     persona=persona,
                     offset=retrieval_options.offset if retrieval_options else None,
                     limit=retrieval_options.limit if retrieval_options else None,
+                    chunks_above=new_msg_req.chunks_above,
+                    chunks_below=new_msg_req.chunks_below,
+                    full_doc=new_msg_req.full_doc,
                 ),
                 user=user,
                 db_session=db_session,
             )
 
-            top_chunks = search_pipeline.reranked_docs
-            top_docs = chunks_to_search_docs(top_chunks)
+            top_sections = search_pipeline.reranked_sections
+            top_docs = chunks_or_sections_to_search_docs(top_sections)
 
             reference_db_search_docs = [
                 create_db_search_doc(server_search_doc=top_doc, db_session=db_session)
@@ -294,7 +314,7 @@ def stream_chat_message_objects(
 
             # Yield the list of LLM selected chunks for showing the LLM selected icons in the UI
             llm_relevance_filtering_response = LLMRelevanceFilterResponse(
-                relevant_chunk_indices=search_pipeline.relevant_chunk_indicies
+                relevant_chunk_indices=search_pipeline.relevant_chunk_indices
             )
             yield llm_relevance_filtering_response
 
@@ -305,9 +325,13 @@ def stream_chat_message_objects(
                     else default_num_chunks
                 ),
                 max_window_percentage=max_document_percentage,
+                use_sections=search_pipeline.ran_merge_chunk,
             )
 
-            llm_docs = [llm_doc_from_inference_chunk(chunk) for chunk in top_chunks]
+            llm_docs = [
+                llm_doc_from_inference_section(section) for section in top_sections
+            ]
+            llm_relevance_list = search_pipeline.section_relevance_list
 
         else:
             llm_docs = []
@@ -353,6 +377,7 @@ def stream_chat_message_objects(
         answer = Answer(
             question=final_msg.message,
             docs=llm_docs,
+            latest_query_files=latest_query_files,
             answer_style_config=AnswerStyleConfig(
                 citation_config=CitationConfig(
                     all_docs_useful=reference_db_search_docs is not None
@@ -365,12 +390,15 @@ def stream_chat_message_objects(
                     new_msg_req.prompt_override or chat_session.prompt_override
                 ),
             ),
-            llm_config=LLMConfig.from_persona(
-                persona,
-                llm_override=(new_msg_req.llm_override or chat_session.llm_override),
+            llm=(
+                llm
+                or get_llm_for_persona(
+                    persona, new_msg_req.llm_override or chat_session.llm_override
+                )
             ),
+            doc_relevance_list=llm_relevance_list,
             message_history=[
-                PreviousMessage.from_chat_message(msg) for msg in history_msgs
+                PreviousMessage.from_chat_message(msg, files) for msg in history_msgs
             ],
         )
         # generator will not include quotes, so we can cast

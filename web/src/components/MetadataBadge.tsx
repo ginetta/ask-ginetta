@@ -8,17 +8,18 @@ export function MetadataBadge({
   return (
     <div
       className={`
-      text-xs 
+      text-xs
       text-strong
       dark:text-strong-dark
       flex
-      bg-hover 
-      rounded-full 
+      bg-hover
+      dark:bg-hover-dark
+      rounded-full
       px-1
-      py-0.5 
-      w-fit 
-      my-auto 
-      select-none 
+      py-0.5
+      w-fit
+      my-auto
+      select-none
       `}
     >
       {icon && icon({ size: 12, className: "mr-0.5 my-auto" })}

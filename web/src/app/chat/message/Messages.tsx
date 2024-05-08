@@ -16,6 +16,8 @@ import { ThreeDots } from "react-loader-spinner";
 import { SkippedSearch } from "./SkippedSearch";
 import remarkGfm from "remark-gfm";
 import { CopyButton } from "@/components/CopyButton";
+import { FileDescriptor } from "../interfaces";
+import { InMessageImage } from "../images/InMessageImage";
 
 export const Hoverable: React.FC<{
   children: JSX.Element;
@@ -166,7 +168,7 @@ export const AIMessage = ({
                     .filter(([_, document]) => document.semantic_identifier)
                     .map(([citationKey, document], ind) => {
                       const display = (
-                        <div className="max-w-350 text-ellipsis flex text-sm border border-border py-1 px-2 rounded flex">
+                        <div className="max-w-350 text-ellipsis flex text-sm border border-border dark:border-border-dark py-1 px-2 rounded flex">
                           <div className="mr-1 my-auto">
                             <SourceIcon
                               sourceType={document.source_type}
@@ -221,8 +223,10 @@ export const AIMessage = ({
 
 export const HumanMessage = ({
   content,
+  files,
 }: {
   content: string | JSX.Element;
+  files?: FileDescriptor[];
 }) => {
   return (
     <div className="py-5 px-5 flex -mr-6 w-full">
@@ -241,6 +245,16 @@ export const HumanMessage = ({
           </div>
           <div className="mx-auto mt-1 ml-8 w-searchbar-xs 2xl:w-searchbar-sm 3xl:w-searchbar-default flex flex-wrap">
             <div className="w-message-xs 2xl:w-message-sm 3xl:w-message-default break-words">
+              {files && files.length > 0 && (
+                <div className="mt-2 mb-4">
+                  <div className="flex flex-wrap gap-2">
+                    {files.map((file) => {
+                      return <InMessageImage key={file.id} fileId={file.id} />;
+                    })}
+                  </div>
+                </div>
+              )}
+
               {typeof content === "string" ? (
                 <ReactMarkdown
                   className="prose max-w-full text-inverted-dark dark:text-inverted"
